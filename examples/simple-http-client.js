@@ -5,15 +5,15 @@ const net = require('net')
 const {URL} = require('url')
 
 async function main () {
-  const url = new URL(process.argv[2])
-  const crlf = '\x0d\x0a'
-
-  const host = url.hostname
-  const port = url.port || 80
-
   try {
+    const url = new URL(process.argv[2])
+    const crlf = '\x0d\x0a'
+
+    const host = url.hostname
+    const port = url.port || 80
+
     const socket = new PromiseSocket(new net.Socket())
-    //socket.stream.setTimeout(1000, () => socket.stream.end())
+    socket.setTimeout(5000)
 
     await socket.connect({host, port})
     await socket.write(
@@ -21,8 +21,10 @@ async function main () {
       `Host: ${host}:${port}` + crlf +
       crlf
     )
+
     const response = await socket.readAll()
     console.log(response.toString())
+
     await socket.end()
   } catch (e) {
     console.log('Connection error:', e)
