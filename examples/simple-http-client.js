@@ -13,7 +13,7 @@ async function main () {
 
   try {
     const socket = new PromiseSocket(new net.Socket())
-    socket.stream.setTimeout(1000, () => socket.stream.end())
+    //socket.stream.setTimeout(1000, () => socket.stream.end())
 
     await socket.connect({host, port})
     await socket.write(
@@ -29,4 +29,4 @@ async function main () {
   }
 }
 
-main().catch(e => console.log('Fatal:', e))
+main()
