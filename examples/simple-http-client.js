@@ -1,7 +1,6 @@
 'use strict'
 
 const PromiseSocket = require('../lib/promise-socket')
-const net = require('net')
 const {URL} = require('url')
 
 async function main () {
@@ -12,7 +11,7 @@ async function main () {
     const host = url.hostname
     const port = url.port || 80
 
-    const socket = new PromiseSocket(new net.Socket())
+    const socket = new PromiseSocket()
     socket.setTimeout(5000)
 
     await socket.connect({host, port})

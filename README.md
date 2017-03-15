@@ -19,6 +19,8 @@ npm install promise-socket
 
 ### Usage
 
+#### constructor([socket])
+
 `PromiseSocket` object requires `socket` object to work:
 
 ```js
@@ -29,74 +31,61 @@ const socket = new net.Socket()
 const promiseSocket = new PromiseSocket(socket)
 ```
 
+New [`net.Socket`](https://nodejs.org/api/net.html#net_new_net_socket_options)
+object is created if `socket` argument is missing.
+
 Original socket is available with `stream` property:
 
 ```js
 console.log(promiseSocket.stream.localAddress)
 ```
 
-#### read
+#### setTimeout(ms)
+
+Set the timeout for idle socket and after this timeout the socket will be ended.
+It means that `read` or `write` methods will be also fulfilled.
+
+```js
+socket.setTimeout(1000)
+await socket.readAll()
+```
+
+#### read([chunkSize])
 
 Check
-[`PromiseReadable.read`](https://www.npmjs.com/package/promise-readable#read)
+[`PromiseReadable.read`](https://www.npmjs.com/package/promise-readable#readchunksize)
 for details.
 
-#### readAll
+#### readAll()
 
 Check
 [`PromiseReadable.readAll`](https://www.npmjs.com/package/promise-readable#readall)
 for details.
 
-#### write
+#### write(chunk)
 
 Check
-[`PromiseWritable.write`](https://www.npmjs.com/package/promise-writable#write)
+[`PromiseWritable.write`](https://www.npmjs.com/package/promise-writable#writechunk)
 for details.
 
-#### writeAll
+#### writeAll(data, [chunkSize])
 
 Check
-[`PromiseWritable.writeAll`](https://www.npmjs.com/package/promise-writable#writeall)
+[`PromiseWritable.writeAll`](https://www.npmjs.com/package/promise-writable#writealldata)
 for details.
 
-#### end
+#### end()
 
 Check
 [`PromiseWritable.end`](https://www.npmjs.com/package/promise-writable#end)
 for details.
 
-#### onceOpen
+#### once(event)
 
 Check
-[`PromiseReadable.onceOpen`](https://www.npmjs.com/package/promise-readable#onceopen)
+[`PromiseReadable.once`](https://www.npmjs.com/package/promise-readable#onceevent)
 and
-[`PromiseWritable.onceOpen`](https://www.npmjs.com/package/promise-writable#onceopen)
-for details.
-
-#### onceClose
-
-Check
-[`PromiseReadable.onceClose`](https://www.npmjs.com/package/promise-readable#onceclose)
-and
-[`PromiseWritable.onceClose`](https://www.npmjs.com/package/promise-writable#onceclose)
-for details.
-
-#### oncePipe
-
-Check
-[`PromiseWritable.onceEnd`](https://www.npmjs.com/package/promise-writable#oncepipe)
-for details.
-
-#### onceUnpipe
-
-Check
-[`PromiseWritable.onceUnpipe`](https://www.npmjs.com/package/promise-writable#onceunpipe)
-for details.
-
-#### onceEnd
-
-Check
-[`PromiseReadable.onceEnd`](https://www.npmjs.com/package/promise-readable#onceend)
+[`PromiseWritable.once`](https://www.npmjs.com/package/promise-writable#onceevent)
 for details.
 
 ### Promise
