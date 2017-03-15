@@ -27,8 +27,8 @@ async function main () {
 
     await socket.end()
   } catch (e) {
-    console.log('Connection error:', e)
+    console.error('Connection error:', e)
   }
 }
 
-main()
+main().catch(e => console.error('Fatal:', e))
