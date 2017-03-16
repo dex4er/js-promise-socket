@@ -98,4 +98,34 @@ Feature('Test promise-socket module', () => {
       return this.promise.should.be.fulfilled
     })
   })
+
+  Scenario('Set timeout for socket two times', function () {
+    Given('Socket object', () => {
+      this.socket = new MockSocket()
+    })
+
+    Given('PromiseSocket object', () => {
+      this.promiseSocket = new PromiseSocket(this.stream)
+    })
+
+    When('I subscribe for end event', () => {
+      this.promise = this.promiseSocket.once('end')
+    })
+
+    When('I set timeout for socket first time', () => {
+      this.promiseSocket.setTimeout(2000)
+    })
+
+    When('I set timeout for socket another time', () => {
+      this.promiseSocket.setTimeout(500)
+    })
+
+    When('I wait for more that timeout', () => {
+      return delay(1000)
+    })
+
+    Then('socket is ended', () => {
+      return this.promise.should.be.fulfilled
+    })
+  })
 })
