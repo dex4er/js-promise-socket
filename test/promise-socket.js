@@ -44,7 +44,7 @@ Feature('Test promise-socket module', () => {
       socket = new MockSocket()
     })
 
-    Given('PromiseSocket object', () => {
+    And('PromiseSocket object', () => {
       promiseSocket = new PromiseSocket(socket)
     })
 
@@ -52,7 +52,7 @@ Feature('Test promise-socket module', () => {
       promise = promiseSocket.connect()
     })
 
-    When('connect event is emitted', () => {
+    And('connect event is emitted', () => {
       socket.emit('connect')
     })
 
@@ -70,7 +70,7 @@ Feature('Test promise-socket module', () => {
       socket = new MockSocket()
     })
 
-    Given('PromiseSocket object', () => {
+    And('PromiseSocket object', () => {
       promiseSocket = new PromiseSocket(socket)
     })
 
@@ -92,7 +92,7 @@ Feature('Test promise-socket module', () => {
       socket = new MockSocket()
     })
 
-    Given('PromiseSocket object', () => {
+    And('PromiseSocket object', () => {
       promiseSocket = new PromiseSocket(socket)
     })
 
@@ -100,11 +100,11 @@ Feature('Test promise-socket module', () => {
       promise = promiseSocket.once('end')
     })
 
-    When('I set timeout for socket', () => {
+    And('I set timeout for socket', () => {
       promiseSocket.setTimeout(500)
     })
 
-    When('I wait for more that timeout', () => {
+    And('I wait for more that timeout', () => {
       return delay(1000)
     })
 
@@ -122,7 +122,7 @@ Feature('Test promise-socket module', () => {
       socket = new MockSocket()
     })
 
-    Given('PromiseSocket object', () => {
+    And('PromiseSocket object', () => {
       promiseSocket = new PromiseSocket(socket)
     })
 
@@ -130,15 +130,15 @@ Feature('Test promise-socket module', () => {
       promise = promiseSocket.once('end')
     })
 
-    When('I set timeout for socket first time', () => {
+    And('I set timeout for socket first time', () => {
       promiseSocket.setTimeout(2000)
     })
 
-    When('I set timeout for socket another time', () => {
+    And('I set timeout for socket another time', () => {
       promiseSocket.setTimeout(500)
     })
 
-    When('I wait for more that timeout', () => {
+    And('I wait for more that timeout', () => {
       return delay(1000)
     })
 
