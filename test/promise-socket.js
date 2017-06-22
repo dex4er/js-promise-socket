@@ -1,6 +1,5 @@
 'use strict'
 
-/* global Feature, Scenario, Given, When, Then */
 const t = require('tap')
 require('tap-given')(t)
 

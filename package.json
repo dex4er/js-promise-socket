@@ -1,6 +1,6 @@
 {
   "name": "promise-socket",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Return promise for socket stream",
   "main": "lib/promise-socket.js",
   "repository": {
@@ -23,23 +23,32 @@
   },
   "dependencies": {
     "any-promise": "^1.3.0",
-    "promise-duplex": "^0.1.0"
+    "promise-duplex": "^0.1.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "delay": "^1.3.1",
-    "nyc": "^10.1.2",
-    "onchange": "^3.2.1",
-    "snazzy": "^6.0.0",
-    "standard": "^9.0.1",
-    "tap": "^10.3.0",
-    "tap-given": "^0.2.0"
+    "chai": "^4.0.2",
+    "chai-as-promised": "^7.0.0",
+    "delay": "^2.0.0",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2",
+    "tap": "^10.5.1",
+    "tap-given": "^0.4.1"
   },
   "scripts": {
     "test": "standard --verbose | snazzy && tap test/*.js",
     "test-coverage": "npm test -- --coverage",
-    "test-onchange-lcovonly": "onchange '**/*.js' -- npm run -s test-coverage -- -R silent --coverage-report lcovonly"
+    "test-onchange-lcovonly": "npm run -s test-coverage -- -R min --coverage-report lcovonly; onchange '**/*.js' -- npm run -s test-coverage -- -R min --coverage-report lcovonly"
+  },
+  "standard": {
+    "globals": [
+      "After",
+      "And",
+      "Feature",
+      "Given",
+      "Scenario",
+      "Then",
+      "When"
+    ]
   },
   "nyc": {
     "exclude": []
