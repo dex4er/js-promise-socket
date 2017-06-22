@@ -30,63 +30,78 @@ Feature('Test promise-socket module', () => {
     }
     pause () {}
     resume () {}
+    setTimeout (timeout) {
+      setTimeout(() => this.emit('end'), timeout)
+    }
   }
 
-  Scenario('Connect', function () {
+  Scenario('Connect', () => {
+    let promise
+    let promiseSocket
+    let socket
+
     Given('Socket object', () => {
-      this.socket = new MockSocket()
+      socket = new MockSocket()
     })
 
     Given('PromiseSocket object', () => {
-      this.promiseSocket = new PromiseSocket(this.socket)
+      promiseSocket = new PromiseSocket(socket)
     })
 
     When('I call connect method', () => {
-      this.promise = this.promiseSocket.connect()
+      promise = promiseSocket.connect()
     })
 
     When('connect event is emitted', () => {
-      this.socket.emit('connect')
+      socket.emit('connect')
     })
 
     Then('promise is fulfilled', () => {
-      return this.promise.should.eventually.be.undefined
+      return promise.should.eventually.be.undefined
     })
   })
 
-  Scenario('Connect for socket with error', function () {
+  Scenario('Connect for socket with error', () => {
+    let promise
+    let promiseSocket
+    let socket
+
     Given('Socket object', () => {
-      this.socket = new MockSocket()
+      socket = new MockSocket()
     })
 
     Given('PromiseSocket object', () => {
-      this.promiseSocket = new PromiseSocket(this.socket)
+      promiseSocket = new PromiseSocket(socket)
     })
 
     When('I call connect method', () => {
-      this.promise = this.promiseSocket.connect({host: 'badhost'})
+      promise = promiseSocket.connect({host: 'badhost'})
     })
 
     Then('promise is rejected', () => {
-      return this.promise.should.be.rejectedWith(Error, 'badhost')
+      return promise.should.be.rejectedWith(Error, 'badhost')
     })
   })
 
-  Scenario('Set timeout for socket', function () {
+  Scenario('Set timeout for socket', () => {
+    let promise
+    let promiseSocket
+    let socket
+
     Given('Socket object', () => {
-      this.socket = new MockSocket()
+      socket = new MockSocket()
     })
 
     Given('PromiseSocket object', () => {
-      this.promiseSocket = new PromiseSocket(this.stream)
+      promiseSocket = new PromiseSocket(socket)
     })
 
     When('I subscribe for end event', () => {
-      this.promise = this.promiseSocket.once('end')
+      promise = promiseSocket.once('end')
     })
 
     When('I set timeout for socket', () => {
-      this.promiseSocket.setTimeout(500)
+      promiseSocket.setTimeout(500)
     })
 
     When('I wait for more that timeout', () => {
@@ -94,29 +109,33 @@ Feature('Test promise-socket module', () => {
     })
 
     Then('socket is ended', () => {
-      return this.promise.should.be.fulfilled
+      return promise.should.be.fulfilled
     })
   })
 
-  Scenario('Set timeout for socket two times', function () {
+  Scenario('Set timeout for socket two times', () => {
+    let promise
+    let promiseSocket
+    let socket
+
     Given('Socket object', () => {
-      this.socket = new MockSocket()
+      socket = new MockSocket()
     })
 
     Given('PromiseSocket object', () => {
-      this.promiseSocket = new PromiseSocket(this.stream)
+      promiseSocket = new PromiseSocket(socket)
     })
 
     When('I subscribe for end event', () => {
-      this.promise = this.promiseSocket.once('end')
+      promise = promiseSocket.once('end')
     })
 
     When('I set timeout for socket first time', () => {
-      this.promiseSocket.setTimeout(2000)
+      promiseSocket.setTimeout(2000)
     })
 
     When('I set timeout for socket another time', () => {
-      this.promiseSocket.setTimeout(500)
+      promiseSocket.setTimeout(500)
     })
 
     When('I wait for more that timeout', () => {
@@ -124,7 +143,7 @@ Feature('Test promise-socket module', () => {
     })
 
     Then('socket is ended', () => {
-      return this.promise.should.be.fulfilled
+      return promise.should.be.fulfilled
     })
   })
 })
