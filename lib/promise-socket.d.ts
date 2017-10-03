@@ -9,7 +9,7 @@ export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSo
   connect(path: string): Promise<void>
   connect(options: object): Promise<void>
 
-  setTimeout (timeout: number): Promise<void>
+  setTimeout (timeout: number): void
 }
 
 export default PromiseSocket

@@ -37,9 +37,13 @@
     "tap-given": "^0.6.0"
   },
   "scripts": {
-    "test": "standard --verbose | snazzy && tap test/*.js",
-    "test-coverage": "npm test -- --coverage",
-    "test-onchange-lcovonly": "npm run -s test-coverage -- -R min --coverage-report lcovonly; onchange '**/*.js' -- npm run -s test-coverage -- -R min --coverage-report lcovonly"
+    "pretest": "standard --verbose | snazzy",
+    "test": "tap test/*.js",
+    "test:coverage": "npm test -- --coverage",
+    "test:onchange:lcovonly": "npm run -s test-coverage -- -R min --coverage-report lcovonly; onchange '**/*.js' -- npm run -s test-coverage -- -R min --coverage-report lcovonly",
+    "update": "npm run update:upgrade && npm run update:reinstall",
+    "update:upgrade": "ncu --upgrade --upgradeAll",
+    "update:reinstall": "rm -f package-lock.json && rm -rf node_modules && npm cache clear --force && npm install"
   },
   "standard": {
     "globals": [
