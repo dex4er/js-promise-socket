@@ -1,4 +1,8 @@
+*-ts.js
+
 *.tgz
+
+ts-node-*
 
 /coverage/
 /node_modules/
@@ -7,3 +11,5 @@
 
 /.tags
 /.tern-project
+
+/package-lock.json

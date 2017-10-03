@@ -1,0 +1,4 @@
+coverage/**
+ts-node-*/**
+**/*.d.ts
+**/*-ts.js

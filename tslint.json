@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-standard"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-conditional-assignment": false,
+    "no-console": [true, "log"],
+    "triple-equals": [true, "allow-null-check"]
+  }
+}

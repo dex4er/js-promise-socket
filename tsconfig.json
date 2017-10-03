@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "removeComments": false,
+    "strict": true,
+    "target": "ES2017",
+    "typeRoots" : [
+      "./lib",
+      "./node_modules/@types"
+    ]
+  }
+}
