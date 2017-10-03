@@ -32,7 +32,19 @@ object is created if `socket` argument is missing.
 _Example:_
 
 ```js
-const PromiseSocket = require('promise-socket')
+const net = require('net')
+const { PromiseSocket } = require('promise-socket')
+
+const socket = new net.Socket()
+
+const promiseSocket = new PromiseSocket(socket)
+```
+
+_Typescript:_
+
+```js
+import * as net 'net'
+import { PromiseSocket } as 'promise-socket'
 
 const socket = new net.Socket()
 
