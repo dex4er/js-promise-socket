@@ -1,6 +1,6 @@
 {
   "name": "promise-socket",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Return promise for socket stream",
   "main": "lib/promise-socket.js",
   "typings": "lib/promise-socket.d.ts",
@@ -23,8 +23,7 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "any-promise": "^1.3.0",
-    "promise-duplex": "^1.1.2"
+    "promise-duplex": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.33",

@@ -151,19 +151,6 @@ and
 [`PromiseWritable.once`](https://www.npmjs.com/package/promise-writable#once)
 for details.
 
-### Promise
-
-This module uses [any-promise](https://www.npmjs.com/package/any-promise) and
-any ES6 Promise library or polyfill is supported.
-
-Ie. [bluebird](https://www.npmjs.com/package/bluebird) can be used as Promise
-library for this module, if it is registered before.
-
-```js
-require('any-promise/register/bluebird')
-const PromiseReadable = require('promise-socket')
-```
-
 ### License
 
 Copyright (c) 2017 Piotr Roszatycki <piotr.roszatycki@gmail.com>
