@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.1 2017-10-06
+
+  * Typescript: reference additional modules in our typings file.
+
 ## v1.0.0 2017-10-02
 
   * Exports also as a class and namespace and the default.

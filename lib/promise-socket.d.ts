@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import * as net from 'net'
 
 import { PromiseDuplex } from 'promise-duplex'
