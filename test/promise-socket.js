@@ -9,8 +9,8 @@ chai.use(chaiAsPromised)
 chai.should()
 
 Feature('Test promise-socket module', () => {
-  const PromiseSocket = require('../lib/promise-socket')
-  const EventEmitter = require('events')
+  const PromiseSocket = require('../lib/promise-socket').PromiseSocket
+  const EventEmitter = require('events').EventEmitter
 
   const delay = require('delay')
 

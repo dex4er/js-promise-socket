@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1 2017-10-06
+
+  * Do not use UMD import internally.
+
 ## v2.0.0 2017-10-06
 
   * Use native `Promise` rather than `any-event`.

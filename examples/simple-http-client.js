@@ -1,9 +1,9 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
 'use strict'
 
 const { URL } = require('url')
-const PromiseSocket = require('../lib/promise-socket')
+const { PromiseSocket } = require('../lib/promise-socket')
 
 async function main () {
   try {
