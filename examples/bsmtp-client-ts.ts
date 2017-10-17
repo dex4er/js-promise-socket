@@ -42,7 +42,7 @@ const port = Number(process.argv[3]) || 25
 
 const socket = new PromiseSocket(new net.Socket())
 const stdin = new PromiseReadable(byline(process.stdin, { keepEmptyLines: true }))
-const stdout = new PromiseWritable(process.stdout as any)
+const stdout = new PromiseWritable(process.stdout)
 
 async function main () {
   await socket.connect({port, host})
