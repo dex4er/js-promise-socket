@@ -1,0 +1,11 @@
+HELO client
+MAIL FROM:<test@example.com>
+RCPT TO:<test@example.net>
+DATA
+From: test@example.com
+To: test@example.net
+Subject: test
+
+test
+.
+QUIT
