@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.2 2017-10-17
+
+  * Requires promise-duplex@2.0.3.
+
 ## v2.0.1 2017-10-06
 
   * Do not use UMD import internally.
