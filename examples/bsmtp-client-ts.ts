@@ -93,7 +93,7 @@ async function main () {
 
 }
 
-main()
+void main()
 .catch((err) => console.error('Fatal:', err))
 .then(() => {
   if (process.stdin.isTTY) {
