@@ -10,6 +10,8 @@ matrix:
     - node_js: "6"
     - node_js: "5"
     - node_js: "4"
+      env:
+        - NPM_INSTALL_PACKAGES="promise-readable promise-writable"
 install:
   - npm install
   - if [ -n "$NPM_INSTALL_PACKAGES" ]; then npm install $NPM_INSTALL_PACKAGES; fi
