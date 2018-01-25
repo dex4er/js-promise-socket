@@ -32,6 +32,8 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "delay": "^2.0.0",
+    "promise-readable": "^2.1.1",
+    "promise-writable": "^2.1.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
     "tap": "^10.7.2",

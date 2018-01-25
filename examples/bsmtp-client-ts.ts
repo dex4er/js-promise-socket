@@ -45,7 +45,7 @@ const stdin = new PromiseReadable(byline(process.stdin, { keepEmptyLines: true }
 const stdout = new PromiseWritable(process.stdout)
 
 async function main () {
-  await socket.connect({port, host})
+  await socket.connect({ port, host })
 
   // which line for DATA command?
   let dataLine = 0

@@ -14,7 +14,7 @@ async function main () {
     const socket = new PromiseSocket()
     socket.setTimeout(5000)
 
-    await socket.connect({host, port})
+    await socket.connect({ host, port })
     await socket.write(
       `GET ${url.pathname} HTTP/1.0` + crlf +
       `Host: ${host}:${port}` + crlf +
