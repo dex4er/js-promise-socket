@@ -1,12 +1,12 @@
 #!/usr/bin/env ts-node
 
 import { URL } from 'url'
-import { PromiseSocket } from '../lib/promise-socket'
+import PromiseSocket from '../lib/promise-socket'
 
 async function main () {
   try {
     const url = new URL(process.argv[2])
-    const crlf = '\x0d\x0a'
+    const crlf = '\r\n'
 
     const host = url.hostname
     const port = url.port || 80
@@ -16,8 +16,9 @@ async function main () {
 
     await socket.connect({ host, port })
     await socket.write(
-      `GET ${url.pathname} HTTP/1.0` + crlf +
+      `GET ${url.pathname} HTTP/1.1` + crlf +
       `Host: ${host}:${port}` + crlf +
+      'Connection: close' + crlf +
       crlf
     )
 

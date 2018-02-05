@@ -1,8 +1,8 @@
 /// <reference types="node" />
 
-import * as net from 'net'
+import net from 'net'
 
-import { PromiseDuplex } from 'promise-duplex'
+import PromiseDuplex from 'promise-duplex'
 
 export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSocket> {
   constructor (socket?: TSocket)

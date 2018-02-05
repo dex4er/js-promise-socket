@@ -22,18 +22,17 @@ matrix:
 
     - node_js: "5"
       env:
+        - TAP_ARGS="--strict"
         - TAP_RCFILE=./.taprc
 
     - node_js: "4"
       env:
+        - TAP_ARGS="--strict"
         - TAP_RCFILE=./.taprc
 
 install:
   - npm install
   - if [ -n "$NPM_INSTALL_PACKAGES" ]; then npm install $NPM_INSTALL_PACKAGES; fi
-  - npm install typescript tslint tslint-config-standard
 
 script:
   - npm run ${NPM_RUN_SCRIPT:-test} -- $TAP_ARGS
-  - node_modules/.bin/tsc
-  - node_modules/.bin/tslint -t stylish -p .

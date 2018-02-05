@@ -3,8 +3,9 @@
 [![Build Status](https://secure.travis-ci.org/dex4er/js-promise-socket.svg)](http://travis-ci.org/dex4er/js-promise-socket) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-promise-socket/badge.svg)](https://coveralls.io/github/dex4er/js-promise-socket) [![npm](https://img.shields.io/npm/v/promise-socket.svg)](https://www.npmjs.com/package/promise-socket)
 
 This module allows to convert
-[`net.Socket`](https://nodejs.org/api/net.html#net_class_net_socket)
-stream into its promisified version, which returns [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+[`net.Socket`](https://nodejs.org/api/net.html#net_class_net_socket) stream into
+its promisified version, which returns
+[`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 object fulfilled when stream's events occurred.
 
 ### Requirements
@@ -18,6 +19,16 @@ npm install promise-socket
 ```
 
 ### Usage
+
+```js
+const PromiseSocket = require('promise-socket')
+```
+
+_Typescript_:
+
+```js
+import PromiseSocket from 'promise-socket'
+```
 
 #### constructor
 
@@ -33,7 +44,7 @@ _Example:_
 
 ```js
 const net = require('net')
-const { PromiseSocket } = require('promise-socket')
+const PromiseSocket = require('promise-socket')
 
 const socket = new net.Socket()
 
@@ -78,7 +89,7 @@ await socket.readAll()
 #### stream
 
 ```js
-const stream = promiseDuplex.stream
+const stream = promiseSocket.stream
 ```
 
 Original stream object.
@@ -86,13 +97,13 @@ Original stream object.
 _Example:_
 
 ```js
-console.log(promiseDuplex.stream.localAddress)
+console.log(promiseSocket.stream.localAddress)
 ```
 
 #### read
 
 ```js
-const chunk = await promiseDuplex.read(chunkSize)
+const chunk = await promiseSocket.read(chunkSize)
 ```
 
 Check
@@ -102,7 +113,7 @@ for details.
 #### readAll
 
 ```js
-const content = await promiseDuplex.readAll()
+const content = await promiseSocket.readAll()
 ```
 
 Check
@@ -112,7 +123,7 @@ for details.
 #### write
 
 ```js
-await promiseDuplex.write(chunk)
+await promiseSocket.write(chunk)
 ```
 
 Check
@@ -122,7 +133,7 @@ for details.
 #### writeAll
 
 ```js
-await promiseDuplex.writeAll(content, chunkSize)
+await promiseSocket.writeAll(content, chunkSize)
 ```
 
 Check
@@ -132,7 +143,7 @@ for details.
 #### end
 
 ```js
-await promiseDuplex.end()
+await promiseSocket.end()
 ```
 
 Check
@@ -142,7 +153,7 @@ for details.
 #### once
 
 ```js
-const result = await promiseDuplex.once(event)
+const result = await promiseSocket.once(event)
 ```
 
 Check
@@ -150,6 +161,21 @@ Check
 and
 [`PromiseWritable.once`](https://www.npmjs.com/package/promise-writable#once)
 for details.
+
+#### destroy
+
+```js
+promiseSocket.destroy()
+```
+
+This method calls destroy method on stream and cleans up all own handlers.
+
+### See also
+
+[`PromiseReadable`](https://www.npmjs.com/package/promise-readablee),
+[`PromiseWritable`](https://www.npmjs.com/package/promise-writable),
+[`PromiseSocket`](https://www.npmjs.com/package/promise-duplex),
+[`PromisePiping`](https://www.npmjs.com/package/promise-piping).
 
 ### License
 

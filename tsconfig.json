@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "module": "commonjs",
-    "removeComments": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "strict": true,
-    "target": "ES2017",
-    "typeRoots" : [
-      "./lib",
-      "./node_modules/@types"
-    ]
+    "target": "ES2017"
   }
 }

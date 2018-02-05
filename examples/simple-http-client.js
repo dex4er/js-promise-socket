@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 
-'use strict'
-
 const { URL } = require('url')
-const { PromiseSocket } = require('../lib/promise-socket')
+const PromiseSocket = require('../lib/promise-socket')
 
 async function main () {
   try {
     const url = new URL(process.argv[2])
-    const crlf = '\x0d\x0a'
+    const crlf = '\r\n'
 
     const host = url.hostname
     const port = url.port || 80
@@ -16,10 +14,11 @@ async function main () {
     const socket = new PromiseSocket()
     socket.setTimeout(5000)
 
-    await socket.connect({host, port})
+    await socket.connect({ host, port })
     await socket.write(
-      `GET ${url.pathname} HTTP/1.0` + crlf +
+      `GET ${url.pathname} HTTP/1.1` + crlf +
       `Host: ${host}:${port}` + crlf +
+      'Connection: close' + crlf +
       crlf
     )
 

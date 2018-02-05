@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.0.0 2018-02-05
+
+  * New method `destroy`.
+  * Support for `import PromiseSocket from 'promise-socket'` syntax.
+  * Upgraded promise-readable@3, promise-writable@3 and promise-duplex@3.
+
 ## v2.0.2 2017-10-17
 
   * Requires promise-duplex@2.0.3.

@@ -26,73 +26,97 @@ C: .
 S: 250 OK: message queued
 C: QUIT
 S: 221 Bye
-C:
-S: ^D
 
 */
 
-const PromiseReadable = require('promise-readable').PromiseReadable
-const PromiseWritable = require('promise-writable').PromiseWritable
-const PromiseSocket = require('../lib/promise-socket').PromiseSocket
+const { PromiseReadablePiping } = require('promise-piping')
+const PromiseWritable = require('promise-writable')
+const PromiseSocket = require('../lib/promise-socket')
+
+// tslint:disable:no-var-requires
+const ReadlineTransform = require('readline-transform')
 
 const net = require('net')
-const byline = require('byline')
 
 const host = process.argv[2] || 'localhost'
 const port = Number(process.argv[3]) || 25
 
 const socket = new PromiseSocket(new net.Socket())
-const stdin = new PromiseReadable(byline(process.stdin, { keepEmptyLines: true }))
+const socketLines = new PromiseReadablePiping(socket, new ReadlineTransform({ skipEmpty: true }))
+const stdinLines = new PromiseReadablePiping(process.stdin, new ReadlineTransform({ skipEmpty: true }))
 const stdout = new PromiseWritable(process.stdout)
+
+let hasPipelining = false
+let waitFor = 0
+
+async function waitForStatus () {
+  ++waitFor
+
+  while (waitFor) {
+    let line
+
+    if ((line = await socketLines.read())) {
+      await stdout.write('S: ' + line + '\n')
+      if (line.match(/^250-PIPELINING/)) {
+        hasPipelining = true
+      }
+      if (line.match(/^\d{3}\s/)) {
+        --waitFor
+      }
+    }
+  }
+}
+
+async function pipelineStatus () {
+  if (hasPipelining) {
+    ++waitFor
+  } else {
+    await waitForStatus()
+  }
+}
 
 async function main () {
   await socket.connect({ port, host })
 
-  // which line for DATA command?
-  let dataLine = 0
+  const CRLF = '\r\n'
 
-  while (1) {
-    // if it is not line for DATA command then read line from server
-    if (dataLine < 2) {
-      await stdout.write('S: ')
+  let dataStream = false
 
-      const rchunk = await socket.read()
+  await waitForStatus()
 
-      // is it EOF?
-      if (!rchunk) break
+  let line
 
-      await stdout.write(rchunk)
+  while ((line = await stdinLines.read())) {
+    await socket.write(line + CRLF)
 
-      // is it 221 Bye?
-      if (rchunk.toString().startsWith('221')) break
-
-      // if this is another line in DATA command
-      if (dataLine) dataLine++
+    if (!dataStream) {
+      stdout.write('C: ' + line + '\n')
     }
 
-    await stdout.write('C: ')
-
-    const wchunk = await stdin.read()
-
-    // is it EOF?
-    if (!wchunk) break
-
-    // echo if was not terminal
-    if (!process.stdin.isTTY) {
-      await stdout.write(wchunk + '\n')
+    if (!dataStream && line.match(/^(EHLO\s|HELO\s|QUIT$)/)) {
+      await waitForStatus()
     }
 
-    if (wchunk.toString().toUpperCase() === 'DATA') {
-      dataLine = 1
-    } else if (wchunk.toString() === '.') {
-      dataLine = 0
+    if (!dataStream && line.match(/^(MAIL FROM:|RCPT TO:)/)) {
+      await pipelineStatus()
     }
 
-    // input has EOL removed so CRLF has to be added
-    await socket.write(Buffer.concat([wchunk, Buffer.from('\x0d\x0a')]))
+    if (!dataStream && line === 'DATA') {
+      dataStream = true
+      await waitForStatus()
+    }
+
+    if (dataStream && line === '.') {
+      dataStream = false
+      await pipelineStatus()
+    }
   }
 
   await socket.end()
+
+  socket.destroy()
+  socketLines.destroy()
+  stdinLines.destroy()
 }
 
 main()

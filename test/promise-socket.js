@@ -8,33 +8,33 @@ const chaiAsPromised = require('chai-as-promised')
 chai.use(chaiAsPromised)
 chai.should()
 
-Feature('Test promise-socket module', () => {
-  const PromiseSocket = require('../lib/promise-socket').PromiseSocket
-  const EventEmitter = require('events').EventEmitter
+const PromiseSocket = require('../lib/promise-socket')
 
-  const delay = require('delay')
+const EventEmitter = require('events').EventEmitter
+const delay = require('delay')
 
-  class MockSocket extends EventEmitter {
-    constructor () {
-      super()
-      this.readable = true
-      this.writable = true
-    }
-    connect (options, callback) {
-      options = options || {}
-      if (options.host === 'badhost') {
-        this.emit('error', new Error('badhost'))
-      } else {
-        callback()
-      }
-    }
-    pause () {}
-    resume () {}
-    setTimeout (timeout) {
-      setTimeout(() => this.emit('end'), timeout)
+class MockSocket extends EventEmitter {
+  constructor () {
+    super()
+    this.readable = true
+    this.writable = true
+  }
+  connect (options, callback) {
+    options = options || {}
+    if (options.host === 'badhost') {
+      this.emit('error', new Error('badhost'))
+    } else {
+      callback()
     }
   }
+  pause () {}
+  resume () {}
+  setTimeout (timeout) {
+    setTimeout(() => this.emit('end'), timeout)
+  }
+}
 
+Feature('Test promise-socket module', () => {
   Scenario('Connect', () => {
     let promise
     let promiseSocket
@@ -80,6 +80,32 @@ Feature('Test promise-socket module', () => {
 
     Then('promise is rejected', () => {
       return promise.should.be.rejectedWith(Error, 'badhost')
+    })
+  })
+
+  Scenario('Connect for socket with error emitted before method', () => {
+    let promise
+    let promiseSocket
+    let socket
+
+    Given('Socket object', () => {
+      socket = new MockSocket()
+    })
+
+    And('PromiseSocket object', () => {
+      promiseSocket = new PromiseSocket(socket)
+    })
+
+    Given('Socket object emitted error event', () => {
+      socket.emit('error', new Error('unknown'))
+    })
+
+    When('I call connect method', () => {
+      promise = promiseSocket.connect()
+    })
+
+    Then('promise is rejected', () => {
+      return promise.should.be.rejectedWith(Error, 'unknown')
     })
   })
 
