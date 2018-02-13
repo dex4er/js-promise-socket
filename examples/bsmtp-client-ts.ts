@@ -31,10 +31,8 @@ S: 221 Bye
 
 import { PromiseReadablePiping } from 'promise-piping'
 import PromiseWritable from 'promise-writable'
+import ReadlineTransform from 'readline-transform'
 import PromiseSocket from '../lib/promise-socket'
-
-// tslint:disable:no-var-requires
-const ReadlineTransform = require('readline-transform')
 
 import net from 'net'
 
@@ -49,7 +47,7 @@ const stdout = new PromiseWritable(process.stdout)
 let hasPipelining = false
 let waitFor = 0
 
-async function waitForStatus () {
+async function waitForStatus (): Promise<void> {
   ++waitFor
 
   while (waitFor) {
@@ -67,7 +65,7 @@ async function waitForStatus () {
   }
 }
 
-async function pipelineStatus () {
+async function pipelineStatus (): Promise<void> {
   if (hasPipelining) {
     ++waitFor
   } else {
@@ -75,7 +73,7 @@ async function pipelineStatus () {
   }
 }
 
-async function main () {
+async function main (): Promise<void> {
   await socket.connect({ port, host })
 
   const CRLF = '\r\n'
@@ -120,9 +118,9 @@ async function main () {
 }
 
 void main()
-.catch((err) => console.error('Fatal:', err))
-.then(() => {
-  if (process.stdin.isTTY) {
-    process.stdin.end()
-  }
-})
+  .catch((err) => console.error('Fatal:', err))
+  .then(() => {
+    if (process.stdin.isTTY) {
+      process.stdin.end()
+    }
+  })

@@ -1,6 +1,6 @@
 {
   "name": "promise-socket",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Return promise for socket stream",
   "main": "lib/promise-socket.js",
   "typings": "lib/promise-socket.d.ts",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@types/node": "^9.4.0",
+    "@types/readline-transform": "^0.9.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "delay": "^2.0.0",
