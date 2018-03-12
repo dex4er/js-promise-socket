@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.2 2018-03-12
+
+* Use markdownlint.
+
 ## v3.0.1 2018-02-13
 
 * Tweaks for example BSMTP client.

@@ -1,6 +1,6 @@
 {
   "name": "promise-socket",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Return promise for socket stream",
   "main": "lib/promise-socket.js",
   "typings": "lib/promise-socket.d.ts",
@@ -31,6 +31,7 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "delay": "^2.0.0",
+    "markdownlint-cli": "^0.7.1",
     "promise-piping": "^1.0.0",
     "promise-readable": "^3.1.3",
     "promise-writable": "^3.1.1",
@@ -44,13 +45,10 @@
     "typescript": "^2.7.1"
   },
   "scripts": {
-    "pretest": "standard --verbose | snazzy && tsc --noEmit --pretty && tslint -t stylish -p .",
+    "pretest": "standard --verbose | snazzy && tsc --noEmit --pretty && tslint -t stylish -p . && markdownlint *.md",
     "test": "tap test/*.js",
     "test:coverage": "npm test -- --coverage",
-    "test:onchange:lcovonly": "npm run -s test-coverage -- -R min --coverage-report lcovonly; onchange '**/*.js' -- npm run -s test-coverage -- -R min --coverage-report lcovonly",
-    "update": "npm run update:upgrade && npm run update:reinstall",
-    "update:upgrade": "ncu --upgrade --upgradeAll",
-    "update:reinstall": "rm -f package-lock.json && rm -rf node_modules && npm cache clear --force && npm install"
+    "test:onchange:lcovonly": "npm run -s test-coverage -- -R min --coverage-report lcovonly; onchange '**/*.js' -- npm run -s test-coverage -- -R min --coverage-report lcovonly"
   },
   "standard": {
     "globals": [

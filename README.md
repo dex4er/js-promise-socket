@@ -1,6 +1,8 @@
-## promise-socket
+# promise-socket
 
+<!-- markdownlint-disable MD013 -->
 [![Build Status](https://secure.travis-ci.org/dex4er/js-promise-socket.svg)](http://travis-ci.org/dex4er/js-promise-socket) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-promise-socket/badge.svg)](https://coveralls.io/github/dex4er/js-promise-socket) [![npm](https://img.shields.io/npm/v/promise-socket.svg)](https://www.npmjs.com/package/promise-socket)
+<!-- markdownlint-enable MD013 -->
 
 This module allows to convert
 [`net.Socket`](https://nodejs.org/api/net.html#net_class_net_socket) stream into
@@ -8,17 +10,17 @@ its promisified version, which returns
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 object fulfilled when stream's events occurred.
 
-### Requirements
+## Requirements
 
 This module requires Node >= 4.
 
-### Installation
+## Installation
 
 ```shell
 npm install promise-socket
 ```
 
-### Usage
+## Usage
 
 ```js
 const PromiseSocket = require('promise-socket')
@@ -30,7 +32,7 @@ _Typescript_:
 import PromiseSocket from 'promise-socket'
 ```
 
-#### constructor
+### constructor
 
 ```js
 const promiseSocket = new PromiseSocket(socket)
@@ -62,7 +64,7 @@ const socket = new net.Socket()
 const promiseSocket = new PromiseSocket(socket)
 ```
 
-#### stream
+### stream
 
 ```js
 const socket = promiseSocket.stream
@@ -76,7 +78,7 @@ _Example:_
 console.log(promiseSocket.stream.localAddress)
 ```
 
-#### setTimeout(ms)
+### setTimeout(ms)
 
 Set the timeout for idle socket and after this timeout the socket will be ended.
 It means that `read` or `write` methods will be also fulfilled.
@@ -86,21 +88,7 @@ socket.setTimeout(1000)
 await socket.readAll()
 ```
 
-#### stream
-
-```js
-const stream = promiseSocket.stream
-```
-
-Original stream object.
-
-_Example:_
-
-```js
-console.log(promiseSocket.stream.localAddress)
-```
-
-#### read
+### read
 
 ```js
 const chunk = await promiseSocket.read(chunkSize)
@@ -110,7 +98,7 @@ Check
 [`PromiseReadable.read`](https://www.npmjs.com/package/promise-readable#read)
 for details.
 
-#### readAll
+### readAll
 
 ```js
 const content = await promiseSocket.readAll()
@@ -120,7 +108,7 @@ Check
 [`PromiseReadable.readAll`](https://www.npmjs.com/package/promise-readable#readall)
 for details.
 
-#### write
+### write
 
 ```js
 await promiseSocket.write(chunk)
@@ -130,7 +118,7 @@ Check
 [`PromiseWritable.write`](https://www.npmjs.com/package/promise-writable#write)
 for details.
 
-#### writeAll
+### writeAll
 
 ```js
 await promiseSocket.writeAll(content, chunkSize)
@@ -140,7 +128,7 @@ Check
 [`PromiseWritable.writeAll`](https://www.npmjs.com/package/promise-writable#writeall)
 for details.
 
-#### end
+### end
 
 ```js
 await promiseSocket.end()
@@ -150,7 +138,7 @@ Check
 [`PromiseWritable.once`](https://www.npmjs.com/package/promise-writable#end)
 for details.
 
-#### once
+### once
 
 ```js
 const result = await promiseSocket.once(event)
@@ -162,7 +150,7 @@ and
 [`PromiseWritable.once`](https://www.npmjs.com/package/promise-writable#once)
 for details.
 
-#### destroy
+### destroy
 
 ```js
 promiseSocket.destroy()
@@ -170,15 +158,15 @@ promiseSocket.destroy()
 
 This method calls destroy method on stream and cleans up all own handlers.
 
-### See also
+## See also
 
 [`PromiseReadable`](https://www.npmjs.com/package/promise-readablee),
 [`PromiseWritable`](https://www.npmjs.com/package/promise-writable),
-[`PromiseSocket`](https://www.npmjs.com/package/promise-duplex),
+[`PromiseDuplex`](https://www.npmjs.com/package/promise-duplex),
 [`PromisePiping`](https://www.npmjs.com/package/promise-piping).
 
-### License
+## License
 
-Copyright (c) 2017 Piotr Roszatycki <piotr.roszatycki@gmail.com>
+Copyright (c) 2017-2018 Piotr Roszatycki <mailto:piotr.roszatycki@gmail.com>
 
 [MIT](https://opensource.org/licenses/MIT)
