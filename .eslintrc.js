@@ -12,11 +12,5 @@ module.exports = {
     Scenario: true,
     Then: true,
     When: true
-  },
-  rules: {
-    indent: ['error', 2, { flatTernaryExpressions: true, MemberExpression: 0, SwitchCase: 1 }],
-    'no-cond-assign': [2, 'except-parens'],
-    'no-multi-spaces': ['error', { ignoreEOLComments: true }],
-    'one-var-declaration-per-line': 2
   }
 }

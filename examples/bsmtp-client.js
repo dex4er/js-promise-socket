@@ -120,9 +120,9 @@ async function main () {
 }
 
 main()
-.catch((err) => console.error('Fatal:', err))
-.then(() => {
-  if (process.stdin.isTTY) {
-    process.stdin.end()
-  }
-})
+  .catch((err) => console.error('Fatal:', err))
+  .then(() => {
+    if (process.stdin.isTTY) {
+      process.stdin.end()
+    }
+  })
