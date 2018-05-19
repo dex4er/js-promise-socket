@@ -56,8 +56,8 @@ const promiseSocket = new PromiseSocket(socket)
 _Typescript:_
 
 ```js
-import * as net 'net'
-import { PromiseSocket } as 'promise-socket'
+import net from 'net'
+import PromiseSocket from 'promise-socket'
 
 const socket = new net.Socket()
 
