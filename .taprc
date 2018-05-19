@@ -1,5 +1,5 @@
 {
   "color": false,
   "nodeArgs": [],
-  "reporter": "classic"
+  "reporter": "dot"
 }
