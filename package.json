@@ -46,9 +46,9 @@
   },
   "scripts": {
     "pretest": "standard --verbose | snazzy && tsc --noEmit --pretty && tslint -t stylish -p . && markdownlint *.md",
-    "test": "tap test/*.js",
-    "test:coverage": "npm test -- --coverage",
-    "test:onchange:lcovonly": "npm run -s test-coverage -- -R min --coverage-report lcovonly; onchange '**/*.js' -- npm run -s test-coverage -- -R min --coverage-report lcovonly"
+    "test": "npm run test:api",
+    "test:api": "tap test/*.js",
+    "test:coverage": "npm test:api -- --coverage"
   },
   "standard": {
     "globals": [
