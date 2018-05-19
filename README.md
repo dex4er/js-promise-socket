@@ -78,10 +78,37 @@ _Example:_
 console.log(promiseSocket.stream.localAddress)
 ```
 
-### setTimeout(ms)
+### connect
+
+```js
+await connect(port, host)
+await connect(path)
+await connect(options)
+```
+
+Initiate a connection on a given socket. Promise if fulfilled when `connect`
+event is emitted. Check
+[`socket.connect`](https://nodejs.org/api/net.html#net_socket_connect) for
+arguments.
+
+_Example:_
+
+```js
+await connect(80, 'localhost')
+// or
+await connect({ port: 80, host: 'localhost'})
+```
+
+### setTimeout
+
+```js
+socket.setTimeout(ms)
+```
 
 Set the timeout for idle socket and after this timeout the socket will be ended.
 It means that `read` or `write` methods will be also fulfilled.
+
+_Example:_
 
 ```js
 socket.setTimeout(1000)
