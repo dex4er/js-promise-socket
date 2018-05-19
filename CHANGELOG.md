@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.1.0 2018-05-19
+
+* Support `connect(port, host)` method arguments.
+
 ## v3.0.2 2018-03-12
 
 * Use markdownlint.

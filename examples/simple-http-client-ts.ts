@@ -9,7 +9,7 @@ async function main () {
     const crlf = '\r\n'
 
     const host = url.hostname
-    const port = url.port || 80
+    const port = Number(url.port) || 80
 
     const socket = new PromiseSocket()
     socket.setTimeout(5000)
