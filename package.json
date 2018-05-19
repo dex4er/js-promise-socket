@@ -31,12 +31,17 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "delay": "^2.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0",
     "markdownlint-cli": "^0.7.1",
     "promise-piping": "^1.0.0",
     "promise-readable": "^3.1.5",
     "promise-writable": "^3.1.2",
     "readline-transform": "^0.9.0",
-    "snazzy": "^7.1.1",
     "standard": "^11.0.0",
     "tap": "^11.1.2",
     "tap-given": "^0.6.0",
@@ -45,7 +50,7 @@
     "typescript": "^2.7.2"
   },
   "scripts": {
-    "pretest": "standard --verbose | snazzy && tsc --noEmit --pretty && tslint -t stylish -p . && markdownlint *.md",
+    "pretest": "eslint . && tsc --noEmit --pretty && tslint -t stylish -p . && markdownlint *.md",
     "test": "npm run test:api",
     "test:api": "tap test/*.js",
     "test:coverage": "npm test:api -- --coverage"
