@@ -19,8 +19,22 @@ class MockSocket extends EventEmitter {
     this.readable = true
     this.writable = true
   }
-  connect (options, callback) {
-    options = options || {}
+  connect (port, host, callback) {
+    let options = {}
+    if (typeof port === 'object') {
+      options = port
+    } else if (typeof port === 'function') {
+      callback = port
+    } else {
+      options = { port: port }
+    }
+    if (typeof host === 'function') {
+      callback = host
+    } else if (typeof host === 'string') {
+      options.host = host
+    }
+    this.port = options.port
+    this.host = options.host
     if (options.host === 'badhost') {
       this.emit('error', new Error('badhost'))
     } else {
@@ -58,6 +72,144 @@ Feature('Test promise-socket module', () => {
 
     Then('promise is fulfilled', () => {
       return promise.should.eventually.be.undefined
+    })
+  })
+})
+
+Feature('Test promise-socket module', () => {
+  Scenario('Connect', () => {
+    let promise
+    let promiseSocket
+    let socket
+
+    Given('Socket object', () => {
+      socket = new MockSocket()
+    })
+
+    And('PromiseSocket object', () => {
+      promiseSocket = new PromiseSocket(socket)
+    })
+
+    When('I call connect method', () => {
+      promise = promiseSocket.connect()
+    })
+
+    And('connect event is emitted', () => {
+      socket.emit('connect')
+    })
+
+    Then('promise is fulfilled', () => {
+      return promise.should.eventually.be.undefined
+    })
+
+    And('port is undefined', () => {
+      (typeof socket.port).should.equal('undefined')
+    })
+
+    And('host is undefined', () => {
+      (typeof socket.host).should.equal('undefined')
+    })
+  })
+
+  Scenario('Connect with object argument', () => {
+    let promise
+    let promiseSocket
+    let socket
+
+    Given('Socket object', () => {
+      socket = new MockSocket()
+    })
+
+    And('PromiseSocket object', () => {
+      promiseSocket = new PromiseSocket(socket)
+    })
+
+    When('I call connect method', () => {
+      promise = promiseSocket.connect({ port: 1234, host: 'host' })
+    })
+
+    And('connect event is emitted', () => {
+      socket.emit('connect')
+    })
+
+    Then('promise is fulfilled', () => {
+      return promise.should.eventually.be.undefined
+    })
+
+    And('port is correct', () => {
+      socket.port.should.be.equal(1234)
+    })
+
+    And('host is correct', () => {
+      socket.host.should.be.equal('host')
+    })
+  })
+
+  Scenario('Connect with port argument', () => {
+    let promise
+    let promiseSocket
+    let socket
+
+    Given('Socket object', () => {
+      socket = new MockSocket()
+    })
+
+    And('PromiseSocket object', () => {
+      promiseSocket = new PromiseSocket(socket)
+    })
+
+    When('I call connect method', () => {
+      promise = promiseSocket.connect(1234)
+    })
+
+    And('connect event is emitted', () => {
+      socket.emit('connect')
+    })
+
+    Then('promise is fulfilled', () => {
+      return promise.should.eventually.be.undefined
+    })
+
+    And('port is correct', () => {
+      socket.port.should.be.equal(1234)
+    })
+
+    And('host is undefined', () => {
+      (typeof socket.host).should.equal('undefined')
+    })
+  })
+
+  Scenario('Connect with port and host arguments', () => {
+    let promise
+    let promiseSocket
+    let socket
+
+    Given('Socket object', () => {
+      socket = new MockSocket()
+    })
+
+    And('PromiseSocket object', () => {
+      promiseSocket = new PromiseSocket(socket)
+    })
+
+    When('I call connect method', () => {
+      promise = promiseSocket.connect(1234, 'host')
+    })
+
+    And('connect event is emitted', () => {
+      socket.emit('connect')
+    })
+
+    Then('promise is fulfilled', () => {
+      return promise.should.eventually.be.undefined
+    })
+
+    And('port is correct', () => {
+      socket.port.should.be.equal(1234)
+    })
+
+    And('host is correct', () => {
+      socket.host.should.be.equal('host')
     })
   })
 
