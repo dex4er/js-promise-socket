@@ -227,7 +227,7 @@ Feature('Test promise-socket module', () => {
     })
 
     When('I call connect method', () => {
-      promise = promiseSocket.connect({host: 'badhost'})
+      promise = promiseSocket.connect({ host: 'badhost' })
     })
 
     Then('promise is rejected', () => {
