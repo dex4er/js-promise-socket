@@ -14,7 +14,7 @@ object fulfilled when stream's events occurred.
 
 ## Requirements
 
-This module requires Node >= 4.
+This module requires Node >= 6.
 
 ## Installation
 
@@ -25,7 +25,7 @@ npm install promise-socket
 ## Usage
 
 ```js
-const PromiseSocket = require('promise-socket')
+const {PromiseSocket} = require('promise-socket')
 ```
 
 _Typescript_:
@@ -48,7 +48,7 @@ _Example:_
 
 ```js
 const net = require('net')
-const PromiseSocket = require('promise-socket')
+const {PromiseSocket} = require('promise-socket')
 
 const socket = new net.Socket()
 
@@ -202,6 +202,6 @@ This method calls destroy method on stream and cleans up all own handlers.
 
 ## License
 
-Copyright (c) 2017-2018 Piotr Roszatycki <mailto:piotr.roszatycki@gmail.com>
+Copyright (c) 2017-2019 Piotr Roszatycki <mailto:piotr.roszatycki@gmail.com>
 
 [MIT](https://opensource.org/licenses/MIT)
