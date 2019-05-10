@@ -1,9 +1,10 @@
 #!/usr/bin/env ts-node
 
-import { URL } from 'url'
-import PromiseSocket from '../lib/promise-socket'
+import {URL} from 'url'
 
-async function main () {
+import PromiseSocket from '../src/promise-socket'
+
+async function main(): Promise<void> {
   try {
     const url = new URL(process.argv[2])
     const crlf = '\r\n'
@@ -14,15 +15,12 @@ async function main () {
     const socket = new PromiseSocket()
     socket.setTimeout(5000)
 
-    await socket.connect({ host, port })
+    await socket.connect({host, port})
     await socket.write(
-      `GET ${url.pathname} HTTP/1.1` + crlf +
-      `Host: ${host}:${port}` + crlf +
-      'Connection: close' + crlf +
-      crlf
+      `GET ${url.pathname} HTTP/1.1` + crlf + `Host: ${host}:${port}` + crlf + 'Connection: close' + crlf + crlf,
     )
 
-    const response = await socket.readAll()
+    const response = (await socket.readAll()) as Buffer
 
     if (response) {
       console.info(response.toString())
@@ -34,4 +32,4 @@ async function main () {
   }
 }
 
-main().catch((err) => console.error('Fatal:', err))
+main().catch(console.error)

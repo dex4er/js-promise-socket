@@ -1,0 +1,9 @@
+# npm i -g eslint eslint-config-prettier eslint-plugin-import eslint-plugin-node
+
+env:
+  node: true
+
+extends: prettier
+
+parserOptions:
+  ecmaVersion: 2017

@@ -1,0 +1,41 @@
+extends:
+  - tslint:recommended
+  - tslint-config-prettier
+rules:
+  curly: [true, ignore-same-line] # too strict
+  interface-name: false # too strict
+  max-line-length: false # prettier will handle it
+  member-access: [true, no-public] # public is implicit
+  member-ordering: # static properties and methods before instance
+    - true
+    - order:
+        - public-static-field
+        - protected-static-field
+        - private-static-field
+        - public-static-method
+        - protected-static-method
+        - private-static-method
+        - public-instance-field
+        - protected-instance-field
+        - private-instance-field
+        - public-constructor
+        - protected-constructor
+        - private-constructor
+        - public-instance-method
+        - protected-instance-method
+        - private-instance-method
+  no-conditional-assignment: false # we need it to read stream in loop
+  no-console: [true, log] # `console.log` is for temporary debugging only
+  no-namespace: false # be compatible with older versions of Typescript
+  typedef: # types are mandatory
+    - true
+    - call-signature
+    - parameter
+    - property-declaration
+  unified-signatures: false # too strict
+  variable-name: # allow leading underscore
+    - true
+    - check-format
+    - allow-leading-underscore
+    - require-const-for-all-caps
+    - ban-keywords

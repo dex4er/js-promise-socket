@@ -2,20 +2,23 @@ sudo: false
 
 language: node_js
 
-env:
-  global:
-    - TAP_RCFILE=./.taprc
-
 matrix:
   include:
-    - node_js: "node"
-      env: NPM_RUN_SCRIPT=test
-    - node_js: "10"
-    - node_js: "8"
-    - node_js: "6"
+    - node_js: 'node'
+      env: NPM_RUN_SCRIPT=test NPM_AUDIT=true MOCHA_ARGS="-- --node-arg=--pending-deprecation --node-arg=--throw-deprecation" NYC="nyc --reporter json"
+    - node_js: '10'
+    - node_js: '8'
+    - node_js: '6'
 
 install:
   - npm install
+  - if [ "$NPM_AUDIT" = true ]; then npm audit; fi
 
 script:
-  - npm run ${NPM_RUN_SCRIPT:-test:api}
+  - echo "--reporter dot --color" > test/mocha.opts
+  - npm run build
+  - $NYC npm run ${NPM_RUN_SCRIPT:-test:spec} -- ${MOCHA_ARGS}
+  - if [ -n "$NYC" ]; then nyc report --color && nyc report --reporter=text-lcov | coveralls; fi
+  - npm run clean
+  - git add .
+  - git diff-index --quiet HEAD

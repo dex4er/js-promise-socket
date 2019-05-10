@@ -1,7 +1,9 @@
 # promise-socket
 
 <!-- markdownlint-disable MD013 -->
+
 [![Build Status](https://secure.travis-ci.org/dex4er/js-promise-socket.svg)](http://travis-ci.org/dex4er/js-promise-socket) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-promise-socket/badge.svg)](https://coveralls.io/github/dex4er/js-promise-socket) [![npm](https://img.shields.io/npm/v/promise-socket.svg)](https://www.npmjs.com/package/promise-socket)
+
 <!-- markdownlint-enable MD013 -->
 
 This module allows to convert
@@ -81,7 +83,10 @@ console.log(promiseSocket.stream.localAddress)
 ### connect
 
 ```js
-await connect(port, host)
+await connect(
+  port,
+  host,
+)
 await connect(path)
 await connect(options)
 ```
@@ -94,9 +99,12 @@ arguments.
 _Example:_
 
 ```js
-await connect(80, 'localhost')
+await connect(
+  80,
+  'localhost',
+)
 // or
-await connect({ port: 80, host: 'localhost'})
+await connect({port: 80, host: 'localhost'})
 ```
 
 ### setTimeout

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const { URL } = require('url')
-const PromiseSocket = require('../lib/promise-socket')
+const {URL} = require('url')
+const {PromiseSocket} = require('../lib/promise-socket')
 
-async function main () {
+async function main() {
   try {
     const url = new URL(process.argv[2])
     const crlf = '\r\n'
@@ -14,12 +14,9 @@ async function main () {
     const socket = new PromiseSocket()
     socket.setTimeout(5000)
 
-    await socket.connect({ host, port })
+    await socket.connect({host, port})
     await socket.write(
-      `GET ${url.pathname} HTTP/1.1` + crlf +
-      `Host: ${host}:${port}` + crlf +
-      'Connection: close' + crlf +
-      crlf
+      `GET ${url.pathname} HTTP/1.1` + crlf + `Host: ${host}:${port}` + crlf + 'Connection: close' + crlf + crlf,
     )
 
     const response = await socket.readAll()
@@ -34,4 +31,4 @@ async function main () {
   }
 }
 
-main().catch((err) => console.error('Fatal:', err))
+main().catch(err => console.error('Fatal:', err))
