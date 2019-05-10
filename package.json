@@ -58,7 +58,7 @@
     "compile": "tsc --pretty",
     "clean": "shx rm -rf lib",
     "postpublish": "git tag v$npm_package_version -a -m \"Release v$npm_package_version\" && git push --tags",
-    "prepublishOnly": "npm run build",
+    "prepack": "npm run build",
     "pretest": "npm run build && tsc --pretty -p examples && tsc --pretty -p test && eslint . && tslint -t stylish -p . && tslint -t stylish -p examples && tslint -t stylish -p test && prettier --ignore-path .gitignore --list-different '**/*.js' '**/*.json' '**/*.md' '**/*.ts' '**/*.yml' && markdownlint \"*.md\"",
     "test": "npm run test:spec",
     "test:spec": "npm run ts-mocha -- \"test/*.ts\"",
