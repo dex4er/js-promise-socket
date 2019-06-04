@@ -1,5 +1,10 @@
 # Changelog
 
+## v4.0.1 2019-06-04
+
+- Minor tweaks in README.
+- Added source map to the package.
+
 ## v4.0.0 2019-05-10
 
 - Rewritten in Typescript.

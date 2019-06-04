@@ -1,0 +1,8 @@
+{
+  "all": true,
+  "cache": false,
+  "extension": [".ts"],
+  "exclude": ["**/*.d.ts", "examples/**"],
+  "include": ["**/*.ts"],
+  "sourceMap": true
+}

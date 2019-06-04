@@ -18,9 +18,3 @@ export function Then(what: string, how: (done: Mocha.Done) => void): Mocha.Test 
 export function And(what: string, how: (done: Mocha.Done) => void): Mocha.Test {
   return it("And " + what, how)
 }
-export function Before(callback: (this: Mocha.Context, done: Mocha.Done) => any): void {
-  before(callback)
-}
-export function After(callback: (this: Mocha.Context, done: Mocha.Done) => any): void {
-  after(callback)
-}

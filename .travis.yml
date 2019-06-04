@@ -5,20 +5,21 @@ language: node_js
 matrix:
   include:
     - node_js: "node"
-      env: NPM_RUN_SCRIPT=test NPM_AUDIT=true MOCHA_ARGS="-- --node-arg=--pending-deprecation --node-arg=--throw-deprecation" NYC="nyc --reporter json"
+      env: NPM_PACK=yes NPM_AUDIT=yes NYC="nyc --no-clean --reporter=lcov"
     - node_js: "10"
     - node_js: "8"
     - node_js: "6"
 
 install:
+  - set -e
   - npm install
-  - if [ "$NPM_AUDIT" = true ]; then npm audit; fi
+  - if [ -n "$NPM_AUDIT" ]; then npm audit; fi
 
 script:
   - echo "--reporter dot --color" > test/mocha.opts
-  - npm run build
-  - $NYC npm run ${NPM_RUN_SCRIPT:-test:spec} -- ${MOCHA_ARGS}
-  - if [ -n "$NYC" ]; then nyc report --color && nyc report --reporter=text-lcov | coveralls; fi
+  - if [ -n "$NPM_PACK" ]; then npm pack; fi
+  - npm run test:spec
+  - if [ -n "$NYC" ]; then npx nyc report --color && npx nyc report --reporter=text-lcov | npx coveralls; fi
+  - git diff --stat --exit-code
+  - for f in $(git ls-files --others --exclude-standard); do git diff --no-index --stat --exit-code /dev/null $next; done
   - npm run clean
-  - git add .
-  - git diff-index --quiet HEAD
