@@ -1,7 +1,7 @@
 /// <reference types="node" />
 
-import * as net from 'net'
-import {PromiseDuplex} from 'promise-duplex'
+import * as net from "net"
+import {PromiseDuplex} from "promise-duplex"
 
 export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSocket> {
   private timeoutHandler?: () => void
@@ -31,18 +31,18 @@ export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSo
       }
 
       const connectHandler = () => {
-        socket.removeListener('error', errorHandler)
+        socket.removeListener("error", errorHandler)
         resolve()
       }
 
       const errorHandler = (err: Error) => {
         this.readable._errored = undefined
         this.writable._errored = undefined
-        socket.removeListener('connect', connectHandler)
+        socket.removeListener("connect", connectHandler)
         reject(err)
       }
 
-      socket.once('error', errorHandler)
+      socket.once("error", errorHandler)
       if (arg2 !== undefined) {
         socket.connect(arg1, arg2, connectHandler)
       } else {
@@ -59,7 +59,7 @@ export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSo
         this.timeoutHandler = undefined
         socket.end()
       }
-      socket.once('timeout', this.timeoutHandler)
+      socket.once("timeout", this.timeoutHandler)
     }
 
     socket.setTimeout(timeout)

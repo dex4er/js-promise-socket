@@ -10,7 +10,7 @@ This module allows to convert
 [`net.Socket`](https://nodejs.org/api/net.html#net_class_net_socket) stream into
 its promisified version, which returns
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-object fulfilled when stream's events occurred.
+object fulfilled when stream"s events occurred.
 
 ## Requirements
 
@@ -25,13 +25,15 @@ npm install promise-socket
 ## Usage
 
 ```js
-const {PromiseSocket} = require('promise-socket')
+const {PromiseSocket} = require("promise-socket")
 ```
 
 _Typescript_:
 
-```js
-import PromiseSocket from 'promise-socket'
+```ts
+import {PromiseSocket} from "promise-socket"
+// or
+import PromiseSocket from "promise-socket"
 ```
 
 ### constructor
@@ -47,8 +49,8 @@ object is created if `socket` argument is missing.
 _Example:_
 
 ```js
-const net = require('net')
-const {PromiseSocket} = require('promise-socket')
+const net = require("net")
+const {PromiseSocket} = require("promise-socket")
 
 const socket = new net.Socket()
 
@@ -57,9 +59,9 @@ const promiseSocket = new PromiseSocket(socket)
 
 _Typescript:_
 
-```js
-import net from 'net'
-import PromiseSocket from 'promise-socket'
+```ts
+import net from "net"
+import PromiseSocket from "promise-socket"
 
 const socket = new net.Socket()
 
@@ -101,10 +103,10 @@ _Example:_
 ```js
 await connect(
   80,
-  'localhost',
+  "localhost",
 )
 // or
-await connect({port: 80, host: 'localhost'})
+await connect({port: 80, host: "localhost"})
 ```
 
 ### setTimeout

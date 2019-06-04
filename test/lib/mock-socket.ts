@@ -1,4 +1,4 @@
-import {Socket, SocketConnectOpts} from 'net'
+import {Socket, SocketConnectOpts} from "net"
 
 export class MockSocket extends Socket {
   readable = true
@@ -18,25 +18,25 @@ export class MockSocket extends Socket {
 
   connect(arg1: any, arg2?: any, arg3?: any): this {
     let connectionListener: (() => void) | undefined
-    if (typeof arg1 === 'object') {
+    if (typeof arg1 === "object") {
       this.port = arg1.port
       this.host = arg1.host
-    } else if (typeof arg1 === 'function') {
+    } else if (typeof arg1 === "function") {
       connectionListener = arg1
     } else {
       this.port = arg1
     }
-    if (typeof arg2 === 'function') {
+    if (typeof arg2 === "function") {
       connectionListener = arg2
-    } else if (typeof arg2 === 'string') {
+    } else if (typeof arg2 === "string") {
       this.host = arg2
     }
-    if (typeof arg3 === 'function') {
+    if (typeof arg3 === "function") {
       connectionListener = arg3
     }
-    if (this.host === 'badhost') {
-      this.emit('error', new Error('badhost'))
-    } else if (typeof connectionListener === 'function') {
+    if (this.host === "badhost") {
+      this.emit("error", new Error("badhost"))
+    } else if (typeof connectionListener === "function") {
       connectionListener()
     }
     return this
@@ -51,7 +51,7 @@ export class MockSocket extends Socket {
   }
 
   setTimeout(timeout: number): this {
-    setTimeout(() => this.emit('end'), timeout)
+    setTimeout(() => this.emit("end"), timeout)
     return this
   }
 }

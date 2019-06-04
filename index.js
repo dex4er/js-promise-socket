@@ -1,1 +1,1 @@
-module.exports = require('./lib/promise-socket')
+module.exports = require("./lib/promise-socket")
