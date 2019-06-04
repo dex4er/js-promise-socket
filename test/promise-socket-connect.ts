@@ -1,4 +1,7 @@
-import {expect} from "chai"
+import chai, {expect} from "chai"
+
+import dirtyChai from "dirty-chai"
+chai.use(dirtyChai)
 
 import {And, Feature, Given, Scenario, Then, When} from "./lib/steps"
 
@@ -30,15 +33,15 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is fulfilled", () => {
-      return expect(fulfilled).to.be.true
+      expect(fulfilled).to.be.true()
     })
 
     And("port is undefined", () => {
-      return expect(socket.port).to.equal(0)
+      expect(socket.port).to.equal(0)
     })
 
     And("host is undefined", () => {
-      return expect(socket.host).to.be.undefined
+      expect(socket.host).to.be.undefined()
     })
   })
 
@@ -66,15 +69,15 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is fulfilled", () => {
-      return expect(fulfilled).to.be.true
+      expect(fulfilled).to.be.true()
     })
 
     And("port is correct", () => {
-      return expect(socket.port).to.equal(1234)
+      expect(socket.port).to.equal(1234)
     })
 
     And("host is correct", () => {
-      return expect(socket.host).to.equal("host")
+      expect(socket.host).to.equal("host")
     })
   })
 
@@ -102,15 +105,15 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is fulfilled", () => {
-      return expect(fulfilled).to.be.true
+      expect(fulfilled).to.be.true()
     })
 
     And("port is correct", () => {
-      return expect(socket.port).to.equal(1234)
+      expect(socket.port).to.equal(1234)
     })
 
     And("host is correct", () => {
-      return expect(socket.host).to.equal("host")
+      expect(socket.host).to.equal("host")
     })
   })
 
@@ -134,7 +137,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is rejected", () => {
-      return expect(error)
+      expect(error)
         .to.be.an("error")
         .with.property("message", "badhost")
     })
@@ -164,7 +167,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is rejected", () => {
-      return expect(error)
+      expect(error)
         .to.be.an("error")
         .with.property("message", "error")
     })
