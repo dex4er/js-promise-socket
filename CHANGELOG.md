@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.0.0 2019-06-14
+
+- Method `setTimeout` sets an event handler that destroys a socket with
+  `TimeoutError`. The handler is removed if timeout is equal `0`.
+
 ## v4.0.1 2019-06-04
 
 - Minor tweaks in README.

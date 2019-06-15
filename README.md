@@ -25,13 +25,13 @@ npm install promise-socket
 ## Usage
 
 ```js
-const {PromiseSocket} = require("promise-socket")
+const {PromiseSocket, TimeoutError} = require("promise-socket")
 ```
 
 _Typescript_:
 
 ```ts
-import {PromiseSocket} from "promise-socket"
+import {PromiseSocket, TimeoutError} from "promise-socket"
 // or
 import PromiseSocket from "promise-socket"
 ```
@@ -115,8 +115,9 @@ await connect({port: 80, host: "localhost"})
 socket.setTimeout(ms)
 ```
 
-Set the timeout for idle socket and after this timeout the socket will be ended.
-It means that `read` or `write` methods will be also fulfilled.
+Set the timeout for idle socket and after this timeout the socket will be
+destroyed with a `TimeoutError`. It means that socket methods (`connect`,
+`read`, `write`, etc.) will be rejected.
 
 _Example:_
 
@@ -194,6 +195,22 @@ promiseSocket.destroy()
 ```
 
 This method calls destroy method on stream and cleans up all own handlers.
+
+### TimeoutError
+
+```js
+socket.setTimeout(5000)
+try {
+  socket.connect({port, host})
+} catch (e) {
+  if (e instanceof TimeoutError) {
+    console.error("Socket timeout")
+  }
+}
+```
+
+This is an error class that is used when timeout occured after using
+`setTimeout` method.
 
 ## See also
 

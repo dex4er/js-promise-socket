@@ -3,6 +3,10 @@
 import * as net from "net"
 import {PromiseDuplex} from "promise-duplex"
 
+import {TimeoutError} from "./timeout-error"
+
+export {TimeoutError} from "./timeout-error"
+
 export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSocket> {
   private timeoutHandler?: () => void
 
@@ -54,12 +58,19 @@ export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSo
   setTimeout(timeout: number): void {
     const socket = this.stream
 
-    if (!this.timeoutHandler) {
-      this.timeoutHandler = () => {
+    if (timeout === 0) {
+      if (this.timeoutHandler) {
+        socket.removeListener("timeout", this.timeoutHandler)
         this.timeoutHandler = undefined
-        socket.end()
       }
-      socket.once("timeout", this.timeoutHandler)
+    } else {
+      if (!this.timeoutHandler) {
+        this.timeoutHandler = () => {
+          this.timeoutHandler = undefined
+          socket.destroy(new TimeoutError())
+        }
+        socket.once("timeout", this.timeoutHandler)
+      }
     }
 
     socket.setTimeout(timeout)

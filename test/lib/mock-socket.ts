@@ -36,6 +36,12 @@ export class MockSocket extends Socket {
     }
     if (this.host === "badhost") {
       this.emit("error", new Error("badhost"))
+    } else if (this.host === "delayed") {
+      setTimeout(() => {
+        if (typeof connectionListener === "function") {
+          connectionListener()
+        }
+      }, 1000)
     } else if (typeof connectionListener === "function") {
       connectionListener()
     }
@@ -51,7 +57,7 @@ export class MockSocket extends Socket {
   }
 
   setTimeout(timeout: number): this {
-    setTimeout(() => this.emit("end"), timeout)
+    setTimeout(() => this.emit("timeout"), timeout)
     return this
   }
 }

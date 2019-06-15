@@ -7,12 +7,12 @@ import {And, Feature, Given, Scenario, Then, When} from "./lib/steps"
 
 import {delay} from "./lib/delay"
 
-import {PromiseSocket} from "../src/promise-socket"
+import {PromiseSocket, TimeoutError} from "../src/promise-socket"
 import {MockSocket} from "./lib/mock-socket"
 
 Feature("Test promise-socket module for setTimeout method", () => {
   Scenario("Set timeout for socket", () => {
-    let fulfilled = false
+    let error: TimeoutError
     let promiseSocket: PromiseSocket<MockSocket>
     let socket: MockSocket
 
@@ -24,9 +24,9 @@ Feature("Test promise-socket module for setTimeout method", () => {
       promiseSocket = new PromiseSocket(socket)
     })
 
-    When("I subscribe for end event", () => {
-      promiseSocket.once("end").then(() => {
-        fulfilled = true
+    When("I call connect method", () => {
+      promiseSocket.connect({port: 0, host: "delayed"}).catch(err => {
+        error = err
       })
     })
 
@@ -38,13 +38,13 @@ Feature("Test promise-socket module for setTimeout method", () => {
       return delay(1000)
     })
 
-    Then("promise is fulfilled", () => {
-      expect(fulfilled).to.be.true()
+    Then("promise is rejected", () => {
+      expect(error).to.be.an.instanceof(TimeoutError)
     })
   })
 
   Scenario("Set timeout for socket two times", () => {
-    let fulfilled = false
+    let error: TimeoutError
     let promiseSocket: PromiseSocket<MockSocket>
     let socket: MockSocket
 
@@ -56,9 +56,9 @@ Feature("Test promise-socket module for setTimeout method", () => {
       promiseSocket = new PromiseSocket(socket)
     })
 
-    When("I subscribe for end event", () => {
-      promiseSocket.once("end").then(() => {
-        fulfilled = true
+    When("I call connect method", () => {
+      promiseSocket.connect({port: 0, host: "delayed"}).catch(err => {
+        error = err
       })
     })
 
@@ -74,7 +74,43 @@ Feature("Test promise-socket module for setTimeout method", () => {
       return delay(1000)
     })
 
-    Then("socket is ended", () => {
+    Then("promise is rejected", () => {
+      expect(error).to.be.an.instanceof(TimeoutError)
+    })
+  })
+
+  Scenario("Set timeout for socket then unset", () => {
+    let fulfilled = false
+    let promiseSocket: PromiseSocket<MockSocket>
+    let socket: MockSocket
+
+    Given("Socket object", () => {
+      socket = new MockSocket()
+    })
+
+    And("PromiseSocket object", () => {
+      promiseSocket = new PromiseSocket(socket)
+    })
+
+    When("I call connect method", () => {
+      promiseSocket.connect({port: 0, host: "delayed"}).then(() => {
+        fulfilled = true
+      })
+    })
+
+    And("I set timeout for socket first time", () => {
+      promiseSocket.setTimeout(500)
+    })
+
+    And("I set timeout for socket another time", () => {
+      promiseSocket.setTimeout(0)
+    })
+
+    And("I wait for more that timeout and delay", () => {
+      return delay(1000)
+    })
+
+    Then("promise is fulfilled", () => {
       expect(fulfilled).to.be.true()
     })
   })
