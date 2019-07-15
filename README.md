@@ -146,6 +146,26 @@ Check
 [`PromiseReadable.readAll`](https://www.npmjs.com/package/promise-readable#readall)
 for details.
 
+### iterate
+
+```js
+for await (const chunk of promiseDuplex.iterate(chunkSize)) {}
+```
+
+Check
+[`PromiseReadable.iterate`](https://www.npmjs.com/package/promise-readable#iterate)
+for details.
+
+### Symbol.asyncIterator
+
+```js
+for await (const chunk of promiseDuplex.iterate(chunkSize)) {}
+```
+
+Check
+[`PromiseReadable[Symbol.asyncIterator]`](https://www.npmjs.com/package/promise-readable#symbolasynciterator)
+for details.
+
 ### write
 
 ```js
