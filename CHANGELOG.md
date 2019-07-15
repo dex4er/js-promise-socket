@@ -1,5 +1,13 @@
 # Changelog
 
+## v6.0.0 2019-07-15
+
+- Uses promise-readable and promise-writable v5.
+- `writeAll` method doesn't close a socket.
+- `PromiseReadable` implements `AsyncIterable` so it is possible to use
+  `for await (const chunk of promiseReadable)` loop.
+- New method `iterate` is provided.
+
 ## v5.0.0 2019-06-14
 
 - Method `setTimeout` sets an event handler that destroys a socket with
