@@ -34,7 +34,7 @@
     "@types/readline-transform": "^0.9.1",
     "chai": "^4.2.0",
     "changelog-parser": "^2.8.0",
-    "coveralls": "^3.0.4",
+    "coveralls": "^3.0.5",
     "cross-env": "^5.2.0",
     "delay": "^4.3.0",
     "dirty-chai": "^2.0.1",
