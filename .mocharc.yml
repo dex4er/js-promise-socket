@@ -1,0 +1,9 @@
+color: true
+diff: true
+opts: ./test/mocha.opts
+package: ./package.json
+require:
+  - ts-node/register
+  - source-map-support/register
+timeout: 90000
+ui: bdd
