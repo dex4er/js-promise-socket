@@ -5,5 +5,6 @@ package: ./package.json
 require:
   - ts-node/register
   - source-map-support/register
+  - mocha-steps
 timeout: 90000
 ui: bdd

@@ -1,5 +1,9 @@
 # Changelog
 
+## v6.0.2 2019-10-07
+
+- Use `mocha-steps` for testing.
+
 ## v6.0.1 2019-10-07
 
 - Compatibility with newer NodeJS typings.

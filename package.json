@@ -45,6 +45,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "markdownlint-cli": "^0.18.0",
     "mocha": "^6.2.1",
+    "mocha-steps": "^1.3.0",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "promise-readable": "^5.0.3",
@@ -68,8 +69,7 @@
     "prepublishOnly": "npm run test",
     "pretest": "npm run lint",
     "test": "npm run test:spec",
-    "test:spec": "npm run ts-mocha -- \"test/*.ts\"",
-    "test:coverage": "npm run clean:coverage && cross-env NYC=\"nyc --no-clean --reporter=lcov\" npm run test:spec && nyc report --reporter=text-summary --color",
-    "ts-mocha": "$NYC mocha --use_strict --throw-deprecation --require source-map-support/register --require ts-node/register --timeout 90000"
+    "test:spec": "$NYC mocha \"test/*.ts\"",
+    "test:coverage": "npm run clean:coverage && cross-env NYC=\"nyc --no-clean --reporter=lcov\" npm run test:spec && nyc report --reporter=text-summary --color"
   }
 }
