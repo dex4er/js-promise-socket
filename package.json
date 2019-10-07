@@ -23,7 +23,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "promise-duplex": "^5.0.0",
+    "promise-duplex": "^5.0.1",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
