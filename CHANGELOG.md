@@ -1,5 +1,10 @@
 # Changelog
 
+## v6.0.1 2019-10-07
+
+- Compatibility with newer NodeJS typings.
+- Updated dependencies.
+
 ## v6.0.0 2019-07-15
 
 - Uses promise-readable and promise-writable v5.
