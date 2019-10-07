@@ -41,7 +41,7 @@
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.2.0",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "markdownlint-cli": "^0.17.0",
     "mocha": "^6.2.1",
