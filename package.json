@@ -27,10 +27,10 @@
     "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.3",
+    "@types/chai": "^4.2.5",
     "@types/dirty-chai": "^2.0.2",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.11",
+    "@types/node": "^12.12.7",
     "@types/readline-transform": "^1.0.0",
     "chai": "^4.2.0",
     "changelog-parser": "^2.8.0",
