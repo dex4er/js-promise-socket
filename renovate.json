@@ -1,5 +1,12 @@
 {
-  "extends": ["config:base", "group:definitelyTyped", "group:linters", "group:monorepos", "group:testNonMajor"],
+  "extends": [
+    "config:base",
+    "group:allNonMajor",
+    "group:definitelyTyped",
+    "group:linters",
+    "group:monorepos",
+    "group:testNonMajor"
+  ],
   "rangeStrategy": "bump",
   "semanticCommits": false
 }
