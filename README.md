@@ -85,10 +85,7 @@ console.log(promiseSocket.stream.localAddress)
 ### connect
 
 ```js
-await connect(
-  port,
-  host,
-)
+await connect(port, host)
 await connect(path)
 await connect(options)
 ```
@@ -101,10 +98,7 @@ arguments.
 _Example:_
 
 ```js
-await connect(
-  80,
-  "localhost",
-)
+await connect(80, "localhost")
 // or
 await connect({port: 80, host: "localhost"})
 ```
@@ -149,7 +143,8 @@ for details.
 ### iterate
 
 ```js
-for await (const chunk of promiseDuplex.iterate(chunkSize)) {}
+for await (const chunk of promiseDuplex.iterate(chunkSize)) {
+}
 ```
 
 Check
@@ -159,7 +154,8 @@ for details.
 ### Symbol.asyncIterator
 
 ```js
-for await (const chunk of promiseDuplex.iterate(chunkSize)) {}
+for await (const chunk of promiseDuplex.iterate(chunkSize)) {
+}
 ```
 
 Check
