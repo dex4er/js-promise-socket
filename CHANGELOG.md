@@ -1,5 +1,10 @@
 # Changelog
 
+## v6.0.3 2019-12-26
+
+- promise-readable@5.0.4: chunk returned by `read` method might be an empty
+  string.
+
 ## v6.0.2 2019-10-07
 
 - Use `mocha-steps` for testing.
