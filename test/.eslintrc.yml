@@ -1,0 +1,5 @@
+extends:
+  - ../.eslintrc.yml
+parserOptions:
+  project: test/tsconfig.json
+  sourceType: module

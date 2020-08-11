@@ -3,9 +3,10 @@ import chai, {expect} from "chai"
 import dirtyChai from "dirty-chai"
 chai.use(dirtyChai)
 
+import {PromiseSocket} from "../src/promise-socket"
+
 import {And, Feature, Given, Scenario, Then, When} from "./lib/steps"
 
-import {PromiseSocket} from "../src/promise-socket"
 import {MockSocket} from "./lib/mock-socket"
 
 Feature("Test promise-socket module for connect method", () => {
