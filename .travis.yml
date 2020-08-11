@@ -1,15 +1,14 @@
-sudo: false
+os: linux
+dist: bionic
 
 language: node_js
 
-matrix:
+jobs:
   include:
     - node_js: "node"
       env: NPM_AUDIT=yes NPM_PACK=yes NPM_RUN_LINT=yes NYC="nyc --no-clean --reporter=lcov"
     - node_js: "12"
     - node_js: "10"
-    - node_js: "8"
-    - node_js: "6"
 
 install:
   - set -e
@@ -18,9 +17,8 @@ install:
 
 script:
   - if [ -n "$NPM_RUN_LINT" ]; then npm run lint; fi
-  - echo "--reporter dot --color" > test/mocha.opts
   - if [ -n "$NPM_PACK" ]; then npm pack; fi
-  - npm run test:spec
+  - npm run test:spec -- --reporter dot --color
   - if [ -n "$NYC" ]; then npx nyc report --color && npx nyc report --reporter=text-lcov | npx coveralls; fi
   - git diff --stat --exit-code
   - for f in $(git ls-files --others --exclude-standard); do git diff --no-index --stat --exit-code /dev/null $next; done

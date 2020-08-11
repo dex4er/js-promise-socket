@@ -1,5 +1,9 @@
 # Changelog
 
+## v6.0.0 2020-08-10
+
+- Requires Node >= 10.
+
 ## v6.0.3 2019-12-26
 
 - promise-readable@5.0.4: chunk returned by `read` method might be an empty
