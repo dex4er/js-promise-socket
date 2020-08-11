@@ -137,9 +137,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is rejected", () => {
-      expect(error)
-        .to.be.an("error")
-        .with.property("message", "badhost")
+      expect(error).to.be.an("error").with.property("message", "badhost")
     })
   })
 
@@ -167,9 +165,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is rejected", () => {
-      expect(error)
-        .to.be.an("error")
-        .with.property("message", "error")
+      expect(error).to.be.an("error").with.property("message", "error")
     })
   })
 })

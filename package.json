@@ -47,7 +47,7 @@
     "mocha": "^6.2.2",
     "mocha-steps": "^1.3.0",
     "nyc": "^15.0.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.5",
     "promise-readable": "^5.0.4",
     "promise-writable": "^5.0.4",
     "readline-transform": "^1.0.0",
