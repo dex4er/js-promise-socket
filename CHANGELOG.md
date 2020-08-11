@@ -1,6 +1,6 @@
 # Changelog
 
-## v6.0.0 2020-08-10
+## v7.0.0 2020-08-11
 
 - Requires Node >= 10.
 - Converted from tslint to eslint.
