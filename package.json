@@ -1,6 +1,6 @@
 {
   "name": "promise-socket",
-  "version": "6.0.3",
+  "version": "7.0.0",
   "description": "Return promise for socket stream",
   "main": "lib/promise-socket.js",
   "typings": "lib/promise-socket.d.ts",
