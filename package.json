@@ -38,7 +38,7 @@
     "chai": "^4.2.0",
     "changelog-parser": "^2.8.0",
     "coveralls": "^3.0.9",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.2",
     "delay": "^4.3.0",
     "dirty-chai": "^2.0.1",
     "eslint": "^7.6.0",
