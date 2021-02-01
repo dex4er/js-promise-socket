@@ -39,7 +39,7 @@
     "changelog-parser": "^2.8.0",
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
-    "delay": "^4.4.0",
+    "delay": "^5.0.0",
     "dirty-chai": "^2.0.1",
     "eslint": "^7.6.0",
     "eslint-config-prettier": "^6.11.0",
