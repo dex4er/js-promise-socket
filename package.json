@@ -20,7 +20,7 @@
   },
   "homepage": "http://github.com/dex4er/js-promise-socket",
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=18.18.2"
   },
   "dependencies": {
     "promise-duplex": "^6.0.0",
