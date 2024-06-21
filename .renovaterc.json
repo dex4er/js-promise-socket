@@ -19,6 +19,11 @@
       "matchManagers": ["npm"],
       "matchDepTypes": ["engines"],
       "rangeStrategy": "auto"
+    },
+    {
+      "description": "Typescript updates are always separate",
+      "matchPackageNames": ["typescript"],
+      "separateMinorPatch": true
     }
   ]
 }
