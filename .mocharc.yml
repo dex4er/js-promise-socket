@@ -1,9 +1,14 @@
 color: true
 diff: true
+no-warnings: true
+node-option:
+  - experimental-specifier-resolution=node
+  - no-warnings
+  - loader=ts-node/esm
 package: ./package.json
-require:
-  - ts-node/register
-  - source-map-support/register
-  - mocha-steps
+spec:
+  - test/*.ts
+reporter: dot
 timeout: 90000
+throw-deprecation: true
 ui: bdd

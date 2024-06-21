@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-const {URL} = require("url")
-const {PromiseSocket} = require("../lib/promise-socket")
+import {URL} from "node:url"
+
+import PromiseSocket from "../lib/promise-socket.js"
 
 async function main() {
   try {

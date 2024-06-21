@@ -1,4 +1,4 @@
-import {Socket, SocketConnectOpts} from "net"
+import {Socket, SocketConnectOpts} from "node:net"
 
 export class MockSocket extends Socket {
   readable = true

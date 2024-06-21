@@ -1,13 +1,10 @@
-import chai, {expect} from "chai"
+import {expect} from "chai"
 
-import dirtyChai from "dirty-chai"
-chai.use(dirtyChai)
+import {PromiseSocket} from "../src/promise-socket.js"
 
-import {PromiseSocket} from "../src/promise-socket"
+import {And, Feature, Given, Scenario, Then, When} from "./lib/steps.js"
 
-import {And, Feature, Given, Scenario, Then, When} from "./lib/steps"
-
-import {MockSocket} from "./lib/mock-socket"
+import {MockSocket} from "./lib/mock-socket.js"
 
 Feature("Test promise-socket module for connect method", () => {
   Scenario("Connect with port argument", () => {
@@ -34,7 +31,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is fulfilled", () => {
-      expect(fulfilled).to.be.true()
+      expect(fulfilled).to.be.true
     })
 
     And("port is undefined", () => {
@@ -42,7 +39,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     And("host is undefined", () => {
-      expect(socket.host).to.be.undefined()
+      expect(socket.host).to.be.undefined
     })
   })
 
@@ -70,7 +67,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is fulfilled", () => {
-      expect(fulfilled).to.be.true()
+      expect(fulfilled).to.be.true
     })
 
     And("port is correct", () => {
@@ -106,7 +103,7 @@ Feature("Test promise-socket module for connect method", () => {
     })
 
     Then("promise is fulfilled", () => {
-      expect(fulfilled).to.be.true()
+      expect(fulfilled).to.be.true
     })
 
     And("port is correct", () => {

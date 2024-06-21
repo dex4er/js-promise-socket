@@ -1,0 +1,31 @@
+name: Trunk Check
+
+on:
+  - pull_request
+  - push
+  - workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  trunk:
+    name: Trunk Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install required dependencies
+        run: npm install
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@v1
+        with:
+          check-mode: all

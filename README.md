@@ -2,19 +2,23 @@
 
 <!-- markdownlint-disable MD013 -->
 
-[![Build Status](https://secure.travis-ci.org/dex4er/js-promise-socket.svg)](http://travis-ci.org/dex4er/js-promise-socket) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-promise-socket/badge.svg)](https://coveralls.io/github/dex4er/js-promise-socket) [![npm](https://img.shields.io/npm/v/promise-socket.svg)](https://www.npmjs.com/package/promise-socket)
+[![GitHub](https://img.shields.io/github/v/release/dex4er/js-promise-socket?display_name=tag&sort=semver)](https://github.com/dex4er/js-promise-socket)
+[![CI](https://github.com/dex4er/js-promise-socket/actions/workflows/ci.yaml/badge.svg)](https://github.com/dex4er/js-promise-socket/actions/workflows/ci.yaml)
+[![Trunk Check](https://github.com/dex4er/js-promise-socket/actions/workflows/trunk.yaml/badge.svg)](https://github.com/dex4er/js-promise-socket/actions/workflows/trunk.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/dex4er/js-promise-socket/badge.svg)](https://coveralls.io/github/dex4er/js-promise-socket)
+[![npm](https://img.shields.io/npm/v/promise-socket.svg)](https://www.npmjs.com/package/promise-socket)
 
 <!-- markdownlint-enable MD013 -->
 
-This module allows to convert
-[`net.Socket`](https://nodejs.org/api/net.html#net_class_net_socket) stream into
-its promisified version, which returns
+This module allows the conversion
+[`net.Socket`](https://nodejs.org/api/net.html#net_class_net_socket) stream
+into its promisified version, which returns
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-object fulfilled when stream"s events occurred.
+object fulfilled when the stream's events occurred.
 
 ## Requirements
 
-This module requires Node >= 6.
+This module requires Node >= 16.
 
 ## Installation
 
@@ -25,15 +29,7 @@ npm install promise-socket
 ## Usage
 
 ```js
-const {PromiseSocket, TimeoutError} = require("promise-socket")
-```
-
-_Typescript_:
-
-```ts
-import {PromiseSocket, TimeoutError} from "promise-socket"
-// or
-import PromiseSocket from "promise-socket"
+import PromiseSocket, {TimeoutError} from "promise-socket"
 ```
 
 ### constructor
@@ -49,18 +45,7 @@ object is created if `socket` argument is missing.
 _Example:_
 
 ```js
-const net = require("net")
-const {PromiseSocket} = require("promise-socket")
-
-const socket = new net.Socket()
-
-const promiseSocket = new PromiseSocket(socket)
-```
-
-_Typescript:_
-
-```ts
-import net from "net"
+import net from "node:net"
 import PromiseSocket from "promise-socket"
 
 const socket = new net.Socket()
@@ -210,7 +195,7 @@ for details.
 promiseSocket.destroy()
 ```
 
-This method calls destroy method on stream and cleans up all own handlers.
+This method calls `destroy` method on stream and cleans up all own handlers.
 
 ### TimeoutError
 
@@ -225,7 +210,7 @@ try {
 }
 ```
 
-This is an error class that is used when timeout occured after using
+This is an error class that is used when the timeout occurred after using
 `setTimeout` method.
 
 ## See also
@@ -237,6 +222,6 @@ This is an error class that is used when timeout occured after using
 
 ## License
 
-Copyright (c) 2017-2019 Piotr Roszatycki <mailto:piotr.roszatycki@gmail.com>
+Copyright (c) 2017-2024 Piotr Roszatycki <mailto:piotr.roszatycki@gmail.com>
 
 [MIT](https://opensource.org/licenses/MIT)

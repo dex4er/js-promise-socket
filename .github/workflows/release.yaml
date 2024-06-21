@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release
+
+    permissions:
+      id-token: write
+      contents: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check if package version matches
+        run: test "${GITHUB_REF_NAME}" = "v$(jq -r .version package.json)"
+
+      - name: Check if changelog version matches
+        run: grep "^## ${GITHUB_REF_NAME//./\\.} " CHANGELOG.md
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: current
+          registry-url: https://registry.npmjs.org
+
+      - name: Install required dependencies
+        run: npm install
+
+      - name: Publish package
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: Parse changelog
+        run: sed -n -e '/^## /{n; :a; /^## /q; p; n; ba}' -e 1d CHANGELOG.md | sed '1d' > ${{ github.workspace }}-CHANGELOG.txt
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: ${{ github.workspace }}-CHANGELOG.txt

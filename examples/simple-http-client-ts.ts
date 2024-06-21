@@ -1,8 +1,8 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S node --experimental-specifier-resolution=node --no-warnings --loader ts-node/esm
 
-import {URL} from "url"
+import {URL} from "node:url"
 
-import PromiseSocket from "../src/promise-socket"
+import PromiseSocket from "../src/promise-socket.js"
 
 async function main(): Promise<void> {
   try {

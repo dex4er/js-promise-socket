@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  node_current:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: current
+
+      - name: Install required dependencies
+        run: npm install
+
+      - name: Audit dependencies
+        run: npm audit --audit-level high
+
+      - name: Run linters
+        run: npm run lint
+
+      - name: Pack
+        run: npm pack
+
+      - name: Run tests with coverage
+        run: npm run test:coverage:spec
+
+      - name: Show coverage report
+        run: npm run test:coverage:report
+
+      - name: Send coverage report
+        run: npx coveralls < coverage/lcov.info
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
+      - name: Clean after tests
+        run: npm run clean
+
+      - name: Check untracked files
+        run: for f in $(git ls-files --others --exclude-standard); do git diff --no-index --stat --exit-code /dev/null $f; done
+
+  node:
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - "22"
+          - "20"
+          - "18"
+          - "16"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install required dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test:spec

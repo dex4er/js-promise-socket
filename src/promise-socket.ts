@@ -1,11 +1,11 @@
 /// <reference types="node" />
 
-import * as net from "net"
+import * as net from "node:net"
 import {PromiseDuplex} from "promise-duplex"
 
-import {TimeoutError} from "./timeout-error"
+import {TimeoutError} from "./timeout-error.js"
 
-export {TimeoutError} from "./timeout-error"
+export {TimeoutError} from "./timeout-error.js"
 
 export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSocket> {
   private timeoutHandler?: () => void

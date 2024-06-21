@@ -1,15 +1,12 @@
-import chai, {expect} from "chai"
+import {expect} from "chai"
 
-import dirtyChai from "dirty-chai"
-chai.use(dirtyChai)
+import {PromiseSocket, TimeoutError} from "../src/promise-socket.js"
 
-import {PromiseSocket, TimeoutError} from "../src/promise-socket"
+import {And, Feature, Given, Scenario, Then, When} from "./lib/steps.js"
 
-import {And, Feature, Given, Scenario, Then, When} from "./lib/steps"
+import {delay} from "./lib/delay.js"
 
-import {delay} from "./lib/delay"
-
-import {MockSocket} from "./lib/mock-socket"
+import {MockSocket} from "./lib/mock-socket.js"
 
 Feature("Test promise-socket module for setTimeout method", () => {
   Scenario("Set timeout for socket", () => {
@@ -106,7 +103,7 @@ Feature("Test promise-socket module for setTimeout method", () => {
     And("I wait for more than timeout and delay", () => delay(1000))
 
     Then("promise is fulfilled", () => {
-      expect(fulfilled).to.be.true()
+      expect(fulfilled).to.be.true
     })
   })
 })
