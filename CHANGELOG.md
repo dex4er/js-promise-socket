@@ -5,6 +5,9 @@
 - Converted to ESM module.
 - Requires Node >= 16.
 - Uses "node:" prefix for Node.js modules.
+- Uses `promise-duplex` with `closed` property that works with Node.js >= 16;
+  closes #77.
+- `setTimeout` returns `this`; closes: #72
 
 ## v7.0.0 2020-08-11
 

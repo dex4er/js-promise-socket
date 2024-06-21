@@ -91,12 +91,14 @@ await connect({port: 80, host: "localhost"})
 ### setTimeout
 
 ```js
-socket.setTimeout(ms)
+promiseSocket = socket.setTimeout(ms)
 ```
 
 Set the timeout for idle socket and after this timeout the socket will be
 destroyed with a `TimeoutError`. It means that socket methods (`connect`,
 `read`, `write`, etc.) will be rejected.
+
+The method returns this object.
 
 _Example:_
 
@@ -192,17 +194,18 @@ for details.
 ### destroy
 
 ```js
-promiseSocket.destroy()
+promiseSocket = promiseSocket.destroy()
 ```
 
 This method calls `destroy` method on stream and cleans up all own handlers.
 
+The method returns this object.
+
 ### TimeoutError
 
 ```js
-socket.setTimeout(5000)
 try {
-  socket.connect({port, host})
+  socket.setTimeout(5000).connect({port, host})
 } catch (e) {
   if (e instanceof TimeoutError) {
     console.error("Socket timeout")

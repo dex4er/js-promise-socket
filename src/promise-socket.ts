@@ -55,7 +55,7 @@ export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSo
     })
   }
 
-  setTimeout(timeout: number): void {
+  setTimeout(timeout: number): this {
     const socket = this.stream
 
     if (timeout === 0) {
@@ -74,6 +74,8 @@ export class PromiseSocket<TSocket extends net.Socket> extends PromiseDuplex<TSo
     }
 
     socket.setTimeout(timeout)
+
+    return this
   }
 }
 
