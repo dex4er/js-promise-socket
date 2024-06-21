@@ -1,12 +1,14 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node --no-warnings
 
 import {URL} from "node:url"
 
 import PromiseSocket from "../lib/promise-socket.js"
 
+import packageJson from "../package.json" with {type: "json"}
+
 async function main() {
   try {
-    const url = new URL(process.argv[2])
+    const url = new URL(process.argv[2] || "https://ifconfig.me/all")
     const crlf = "\r\n"
 
     const host = url.hostname
@@ -17,7 +19,15 @@ async function main() {
 
     await socket.connect({host, port})
     await socket.write(
-      `GET ${url.pathname} HTTP/1.1` + crlf + `Host: ${host}:${port}` + crlf + "Connection: close" + crlf + crlf,
+      `GET ${url.pathname} HTTP/1.1` +
+        crlf +
+        `Host: ${host}:${port}` +
+        crlf +
+        "Connection: close" +
+        crlf +
+        `User-Agent: ${packageJson.name}/${packageJson.version}` +
+        crlf +
+        crlf,
     )
 
     const response = await socket.readAll()

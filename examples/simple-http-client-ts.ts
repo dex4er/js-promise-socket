@@ -4,9 +4,11 @@ import {URL} from "node:url"
 
 import PromiseSocket from "../src/promise-socket.js"
 
+import packageJson from "../package.json" with {type: "json"}
+
 async function main(): Promise<void> {
   try {
-    const url = new URL(process.argv[2])
+    const url = new URL(process.argv[2] || "https://ifconfig.me/all")
     const crlf = "\r\n"
 
     const host = url.hostname
@@ -17,7 +19,15 @@ async function main(): Promise<void> {
 
     await socket.connect({host, port})
     await socket.write(
-      `GET ${url.pathname} HTTP/1.1` + crlf + `Host: ${host}:${port}` + crlf + "Connection: close" + crlf + crlf,
+      `GET ${url.pathname} HTTP/1.1` +
+        crlf +
+        `Host: ${host}:${port}` +
+        crlf +
+        "Connection: close" +
+        crlf +
+        `User-Agent: ${packageJson.name}/${packageJson.version}` +
+        crlf +
+        crlf,
     )
 
     const response = (await socket.readAll()) as Buffer
@@ -32,4 +42,4 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch(console.error)
+main().catch(err => console.error("Fatal:", err))

@@ -2,7 +2,10 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "../",
-    "noEmit": true
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "exclude": []
 }
