@@ -5,9 +5,11 @@
 - Converted to ESM module.
 - Requires Node >= 16.
 - Uses "node:" prefix for Node.js modules.
+- Uses `promise-writable` with listeners leak fixed in
+  dex4er/js-promise-writable#55; closes dex4er/js-promise-socket#63.
 - Uses `promise-duplex` with `closed` property that works with Node.js >= 16;
-  closes #77.
-- `setTimeout` returns `this`; closes: #72
+  closes dex4er/js-promise-socket#77.
+- `setTimeout` returns `this`; closes: dex4er/js-promise-socket#72.
 
 ## v7.0.0 2020-08-11
 
