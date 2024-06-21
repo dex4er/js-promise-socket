@@ -30,7 +30,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "promise-duplex": "^7.0.0"
+    "promise-duplex": "^8.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.5.0",
