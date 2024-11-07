@@ -5,8 +5,8 @@
   "type": "module",
   "exports": {
     ".": {
-      "default": "./lib/promise-socket.js",
-      "typings": "./lib/promise-socket.d.ts"
+      "typings": "./lib/promise-socket.d.ts",
+      "default": "./lib/promise-socket.js"
     }
   },
   "main": "lib/promise-socket.js",
