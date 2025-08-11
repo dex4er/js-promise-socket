@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check if package version matches
         run: test "${GITHUB_REF_NAME}" = "v$(jq -r .version package.json)"
