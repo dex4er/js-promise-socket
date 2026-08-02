@@ -49,7 +49,7 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "markdownlint-cli": "^0.41.0",
-    "mocha": "^10.4.0",
+    "mocha": "^11.8.0",
     "mocha-steps": "^1.3.0",
     "prettier": "^3.3.2",
     "semver": "^7.6.2",
