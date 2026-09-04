@@ -33,7 +33,7 @@
     "promise-duplex": "^8.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
+    "@eslint/js": "^10.0.1",
     "@tsconfig/node16": "^16.1.3",
     "@types/chai": "^4.3.16",
     "@types/core-js": "^2.5.8",
@@ -46,7 +46,7 @@
     "c8": "^10.1.2",
     "chai": "^5.1.1",
     "coveralls": "^3.1.1",
-    "eslint": "^8.57.0",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^9.1.0",
     "markdownlint-cli": "^0.41.0",
     "mocha": "^10.4.0",
